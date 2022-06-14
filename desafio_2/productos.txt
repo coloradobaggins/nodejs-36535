@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Mouse",
+    "price": 4250.99,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png"
+    
+  },
+  {
+    "title": "Teclado",
+    "price": 1400.00,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id":2
+  }
+]
