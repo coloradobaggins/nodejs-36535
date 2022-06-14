@@ -66,7 +66,9 @@ class Usuario{
 
 }
 
-let librosUser1 = [
+/****************************** */
+
+let booksObj = [
     {
         nombre: 'El señor de los Anillos',
         autor: 'JRR Tolkien'
@@ -82,22 +84,22 @@ let librosUser1 = [
 ];
 
 
-let mascotasUser1 = ['Vicente', 'Rufina'];
+let petsObj = ['Vicente', 'Rufina'];
 
-let user1 = new Usuario('Armando', 'Bugiolacchi', librosUser1, mascotasUser1);
+let usuario = new Usuario('Armando', 'Bugiolacchi', booksObj, petsObj);
 
-console.log(`User1 Full Name: ${user1.getFullName()}`);
-console.log(`cantMascotas user1: ${user1.countMascotas()}`);
+console.log(`user Full Name: ${usuario.getFullName()}`);
+console.log(`countMascotas user: ${usuario.countMascotas()}`);
 
-user1.addMascota('pajaro');
+//Add new pet
+usuario.addMascota('pepe');
 
-console.log(`cantMascotas user1: ${user1.countMascotas()}`);
-console.log(`Books:`)
+console.log(`countMascotas user: ${usuario.countMascotas()}`);
+
+//Add new book
+usuario.addBook('Processing', 'Casey Reas');
 
 
-user1.addBook('El libro nuevo', 'un loco');
-
-
-console.log(`Books NAMES:`)
-console.log(user1.getBooksName());
+console.log(`Books names:`)
+console.log(usuario.getBooksName());
 
