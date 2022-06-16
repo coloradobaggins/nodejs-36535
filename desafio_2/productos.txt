@@ -6,9 +6,21 @@
     "id": 1
   },
   {
-    "title": "teclado2",
-    "price": 4222.99,
+    "title": "mouse",
+    "price": 2500.99,
     "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
-    "id": 2
+    "id": 3
+  },
+  {
+    "title": "pc",
+    "price": 84222.99,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id": 4
+  },
+  {
+    "title": "control",
+    "price": 120.99,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id": 5
   }
 ]

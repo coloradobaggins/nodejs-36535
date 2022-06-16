@@ -13,17 +13,24 @@ let productTest = {
 let objContenedor = new contenedor('productos.txt');
 
 
-//console.log(JSON.stringify(productTest));
-
-
-
 
 /**************
  *  Get by Id
+ *  ** OK **
  */
 /*
-//objContenedor.getById(1);
+objContenedor.getById(2)
+.then((res)=> console.log(res))
+.catch((err)=> console.log(err));
+*/
 
+/**************
+ *  Delete by Id
+ *  ** OK **
+ */
+objContenedor.deleteById(2)
+.then((res) => console.log(res))
+.catch((err)=> console.log(err));
 
 /**************
  *  Save

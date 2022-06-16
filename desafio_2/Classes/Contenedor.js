@@ -84,40 +84,33 @@ module.exports = class Contenedor{
 
  
 
+    /**
+     * 
+     * @param {int} id 
+     * @returns obj || null
+     */
+    async getById(id){
 
-    getById(id){
+        let fileData = await this.getAll();
 
-        console.log(id);
-
-        let fileData = this.getAll();
-
-        let allData;
-
-        let filteredObj = [];
-
-        fileData.then((res)=> {
-
-            allData = res;
-
-            filteredObj = allData.find((elmt) => elmt.id == id);
-
-            //console.log(filteredObj);
-
-            if(filteredObj==undefined){
-                throw ('No tenemos nada para devolver con ese id...');
-            }
-
-
-        });
-
-        
+        return fileData.find((p)=> p.id===id) ?? null;
     
     }
 
+    /**
+     * 
+     * @param {int} id 
+     * @returns 
+     */
+    async deleteById(id){
 
-    
+        let theFile = await this.getAll();
 
-    
+        let filteredObj = theFile.filter((p)=>p.id !==id);
+
+        this.__writeFile(JSON.stringify(filteredObj, null, 2));
+
+    }
 
     /**
      * 
@@ -207,34 +200,6 @@ module.exports = class Contenedor{
 
         }catch(err){
             console.log(err);
-        }
-
-    }
-
-
-
-
-
-
-
-    /********* */
-    //HELPER....no esta en uso...
-    __checkValidJson(fileData){
-
-        if (/^[\],:{}\s]*$/.test(fileData.replace(/\\["\\\/bfnrtu]/g, '@').
-        replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-        replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-
-        //the json is ok
-
-        console.log(`json valid`);
-
-        }else{
-
-            console.log(`json NOT valid`);
-
-        //the json is not ok
-
         }
 
     }
