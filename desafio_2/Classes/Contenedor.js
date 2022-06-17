@@ -1,6 +1,4 @@
 const fs = require('fs');
-const { parse } = require('path');
-const { json } = require('stream/consumers');
 
 module.exports = class Contenedor{
 
@@ -13,16 +11,14 @@ module.exports = class Contenedor{
     /**
      * 
      * Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
-     * Incorporara al producto un id numerico, que debera ser siempre uno mas que el id del ultimo
-     * objeto agregado (o id 1 si es el primer objeto que se agrega)
-     * NO pUEDE ESTAR REPETIDO. Tomar siempre el id del anterior..
+     * Incrementa id
      * 
      * @param {obj} obj 
      */
     async save(obj){        
         
         if(await this.__checkFileEmpty()){
-            this.__writeFile();                                                         //Si esta completamente vacio, que le ponga los [] - Evito error de json.
+            this.__writeFile();                                                         //Si esta completamente vacio, escribo los [] - Evito error de json.
         }
         
         let allProducts = [];
@@ -31,7 +27,7 @@ module.exports = class Contenedor{
         let lastAssignedId = 0;
 
         
-        if(jsonData.length > 0){                                                        //BUscar el id mas alto, y recuper los objetos
+        if(jsonData.length > 0){                                                        //Si tengo objetos, buscar el id mas alto. Recupero los objetos
 
             lastAssignedId = Math.max(...jsonData.map((products)=> products.id));
 
@@ -41,31 +37,19 @@ module.exports = class Contenedor{
                 
             });
 
-            console.log(`lastAssignedId: ${lastAssignedId}`);
-
         }
 
-        obj.id = lastAssignedId + 1;
+        lastAssignedId++;
+
+        obj.id = lastAssignedId;
 
         allProducts.push(obj);
-
-        console.log(`all productos:`);
-        console.log(allProducts);
-
-        
-        
-
-        //return jsonData;
-        //return readedFile;
-
             
         try{
 
-            //await fs.promises.writeFile(this.fileName, JSON.stringify(allProducts, null, 2)); 
-
             this.__writeFile(JSON.stringify(allProducts, null, 2));
 
-            console.log('se agrego texto al archivo');
+            return lastAssignedId;
 
         }catch(err){
 
@@ -74,15 +58,7 @@ module.exports = class Contenedor{
 
         }
 
-        
-
-        
-        
-
-        //return id asignado
     }
-
- 
 
     /**
      * 
@@ -104,17 +80,26 @@ module.exports = class Contenedor{
      */
     async deleteById(id){
 
-        let theFile = await this.getAll();
+        if(await this.getById(id)==null)    //Check id antes de borrar
+            return null;
+        
+        try{
 
-        let filteredObj = theFile.filter((p)=>p.id !==id);
+            let theFile = await this.getAll();
 
-        this.__writeFile(JSON.stringify(filteredObj, null, 2));
+            let filteredObj = theFile.filter((p)=>p.id !==id);
 
+            this.__writeFile(JSON.stringify(filteredObj, null, 2));
+
+        }catch(err){
+            
+            throw `deleteById error ${err}`;
+
+        }
+        
     }
 
     /**
-     * 
-     * TODO:: chequear si es un obj, si tengo [] o si esta vacio?
      * 
      * @returns json object
      */
@@ -130,15 +115,15 @@ module.exports = class Contenedor{
 
         }catch(err){
 
-            console.log(`getAll() ...Error al obtener todos...`);
-            console.log(err);
+            throw `Error getAll: ${err}`;
 
         }
 
     }
 
     /**
-     * Eliminar todos los objetos presentes en el archivo.
+     * 
+     * 
      */
     async deleteAll(){
 
@@ -146,17 +131,13 @@ module.exports = class Contenedor{
 
             this.__writeFile();
 
-            return true;
-
         }catch(err){
 
-            console.log(`Error al leer/escribir archivo`);
-            console.log(err);
+            throw `Error al leer/escribir archivo ${err}`;
 
         }
 
     }
-
 
 
     async __readFile(){
@@ -169,20 +150,22 @@ module.exports = class Contenedor{
 
         }catch(err){
 
-            console.log('Error al leer archivo');
-            console.log(err);
+            throw `Error al leer archivo ${err}`;
 
         }
 
     }
 
+    /**
+     * 
+     * @returns {bool}
+     */
     async __checkFileEmpty(){
 
         let theFile = await this.__readFile();
 
         
             if (theFile.length === 0) {
-                //Code to be executed if the file is empty
 
                return true;
 
@@ -190,6 +173,10 @@ module.exports = class Contenedor{
         return false;
     }
 
+    /**
+     * 
+     * @param {json} objToWrite 
+     */
     async __writeFile(objToWrite = []){
 
         let writeInFile = (objToWrite.length===0) ? '[]' : objToWrite;
@@ -199,7 +186,9 @@ module.exports = class Contenedor{
             await fs.promises.writeFile(this.fileName, writeInFile)
 
         }catch(err){
-            console.log(err);
+
+            throw `Error al escribir archivo ${err}`;
+
         }
 
     }
