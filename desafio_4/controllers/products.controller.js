@@ -24,12 +24,18 @@ const productGet = async (req, res)=>{
 }
 
 
+const productsPost = async (req, res)=>{
 
+    //console.log(req.body);
+    const newProd = req.body;
 
-const productsPost = (req, res)=>{
+    const addProd = await objContenedor.save(newProd);
 
-    res.json({
-        msg: 'Custom msg..'
+    res.status(201).json({
+        msg: 'POST new item',
+        newProd,
+        lastId: addProd
+
     })
 
 }
