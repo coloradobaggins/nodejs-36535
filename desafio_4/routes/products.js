@@ -2,23 +2,25 @@ const { Router } = require('express');
 const { productsGet,
         productGet,
         productsPost,
+        productsPostFront,
         productsPut, 
         productsDelete } = require('../controllers/products.controller');
 
 const router = Router();
 
 
-//End Point
-//Ruta: this.app.get('/api/productos' | Controller: la function
-router.get('/', productsGet);  //productsGet (referencia - require script)
+//End Points
+router.get('/', productsGet);
 
-router.get('/:id', productGet);  //productsGet (referencia - require script)
+router.get('/:id', productGet);
 
 router.post('/', productsPost);
 
+router.post('/front', productsPostFront);
+
 router.put('/:id', productsPut);
 
-router.delete('/', productsDelete);
+router.delete('/:id', productsDelete);
 
 
 

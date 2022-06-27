@@ -26,9 +26,11 @@ const productGet = async (req, res)=>{
 
 const productsPost = async (req, res)=>{
 
-    //console.log(req.body);
+    
     const newProd = req.body;
 
+    //console.log(req.body);
+    
     const addProd = await objContenedor.save(newProd);
 
     res.status(201).json({
@@ -37,22 +39,55 @@ const productsPost = async (req, res)=>{
         lastId: addProd
 
     })
+    
+}
+
+const productsPostFront = async (req, res)=>{
+
+    console.log(`post front..`);
+
+    const newProd = req.body;
+
+    //console.log(req.body);
+    
+    const addProd = await objContenedor.save(newProd);
+
+    res.status(201).json({
+        msg: 'POST new item from form',
+        newProd,
+        lastId: addProd
+    })
 
 }
 
-const productsPut = (req, res)=>{
+const productsPut = async (req, res)=>{
 
     const { id } = req.params;
 
+    const newProd = req.body;
+
+    
+
+    let theProd = await objContenedor.update(id, newProd);
+
     res.json({
-        msg: "From put.. get this id"
+        msg: "From put.. get this id",
+        theProd
     });
 
 }
 
-const productsDelete = (req, res)=>{
+const productsDelete = async (req, res)=>{
 
-    res.json({msg:'delete products - api controller'});
+    const id = parseInt(req.params.id);
+
+    let prodDelete = await objContenedor.deleteById(id);
+
+    res.status(200).json({
+        msg:'Delete prod by id',
+        idDelete: id,
+        prodDelete
+    });
 
 }
 
@@ -60,6 +95,7 @@ module.exports = {
     productsGet,
     productGet,
     productsPost,
+    productsPostFront,
     productsPut,
     productsDelete
 }

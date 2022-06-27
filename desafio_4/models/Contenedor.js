@@ -63,6 +63,29 @@ module.exports = class Contenedor{
 
     }
 
+    async update(id, obj){
+
+        let parsedId = parseInt(id);
+
+        /*
+        console.log(`id: ${parsedId}`);
+        console.log(obj);*/
+
+
+        let item = await this.getById(parsedId); //Puede ser null
+
+        let allProducts = await this.getAll();
+
+        if(item != null){
+
+            
+            
+        }
+
+        return false;
+
+    }
+
     /**
      * 
      * @param {int} id 

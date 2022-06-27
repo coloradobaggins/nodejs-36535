@@ -23,6 +23,8 @@ class Server{
         //public dir
         this.app.use(express.static('public')); 
 
+        this.app.use(express.urlencoded({ extendedparser : true }));
+
     }
 
     routes(){
