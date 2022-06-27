@@ -47,16 +47,19 @@ const productsPostFront = async (req, res)=>{
     console.log(`post front..`);
 
     const newProd = req.body;
-
-    //console.log(req.body);
     
     const addProd = await objContenedor.save(newProd);
 
+    res.redirect('/');  //Redirigir a form
+
+    /*
     res.status(201).json({
         msg: 'POST new item from form',
         newProd,
         lastId: addProd
-    })
+    });*/
+
+    
 
 }
 

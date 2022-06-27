@@ -23,7 +23,9 @@ class Server{
         //public dir
         this.app.use(express.static('public')); 
 
-        this.app.use(express.urlencoded({ extendedparser : true }));
+        //this.app.use(express.urlencoded({ extendedparser : true }));
+        //express 4.16.0
+        this.app.use(express.urlencoded({extended: true}));
 
     }
 
