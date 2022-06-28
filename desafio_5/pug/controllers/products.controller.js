@@ -14,7 +14,9 @@ const getProducts = async (req, res = response)=>{
 
         console.log(allProd);
 
-        res.render('getProducts');
+        res.render('getProducts', {
+            prods: allProd
+        });
 
     }catch(err){
 
@@ -41,7 +43,8 @@ const postProducts = async (req, res)=>{
     }
     
     res.redirect('/');
-}   
+}
+
 
 module.exports = {
     getProducts,

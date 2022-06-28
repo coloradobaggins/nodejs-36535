@@ -11,15 +11,25 @@
 </head>
 <body>
 
-    <h1>Desafio 5 - PUG</h1>
-
-    <h2>Alta de productos - PUG</h2>
+    
     <div class="container">
+        
+        <h1>Desafio 5 - PUG</h1>
+
         <div class="row">
 
-            <a href="/productos">Ver productos</a>
-
             <div class="col-md-6">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Alta de productos</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="float-end" href="/productos">Ver productos</a>
+                    </div>
+                </div>
+
+
                 <form id="add_form" action="/productos" method="post">
                     <div class="mb-3">
                         <label for="title" class="form-label">Producto</label>

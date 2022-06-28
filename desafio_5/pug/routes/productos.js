@@ -5,8 +5,11 @@ const router = Router();
 
 //End points
 
+
+
 router.get('/', getProducts);
 
 router.post('/', postProducts);
+
 
 module.exports = router;

@@ -34,6 +34,9 @@ class Server{
     routes(){
 
         this.app.use(this.productsRoutes, require('../routes/productos'));
+        this.app.use('*', (req, res)=>{
+            res.render('not-found')
+        });
 
     }
 
