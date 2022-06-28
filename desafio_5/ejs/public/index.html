@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 5</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="./css/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Desafio 5 - EJS</h1>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Alta de productos</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="float-end" href="/productos">Ver productos</a>
+                    </div>
+                </div>
+
+                <form id="add_form" action="/productos" method="post">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Producto</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Nombre del producto">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="price" name="price" placeholder="Precio">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="thumbnail" class="form-label">Thumbnail</label>
+                        <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="url thumbnail">
+                    </div>
+                    
+                    <button id="sendBtn" type="submit" class="btn btn-primary">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
