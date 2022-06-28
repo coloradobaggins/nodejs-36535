@@ -14,9 +14,7 @@ const getProducts = async (req, res = response)=>{
 
         console.log(allProd);
 
-        res.render('getProducts', {
-            prods: allProd
-        });
+        res.render('getProducts');
 
     }catch(err){
 
