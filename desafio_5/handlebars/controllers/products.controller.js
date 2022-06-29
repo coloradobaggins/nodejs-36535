@@ -6,13 +6,9 @@ const objContenedor = new Contenedor('./productos.txt');
 
 const getProducts = async (req, res = response)=>{
 
-    //res.send(`Hola desde get...!`);
-
     try{
 
         const allProd = await objContenedor.getAll();
-
-        console.log(allProd);
 
         res.render('getProducts', {
             prods: allProd
@@ -37,12 +33,12 @@ const postProducts = async (req, res)=>{
     try{
 
         await objContenedor.save(newProd);
+        res.redirect('/');
 
     }catch(err){
         console.log(err)
     }
     
-    res.redirect('/');
 }   
 
 module.exports = {
