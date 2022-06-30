@@ -26,9 +26,10 @@ socket.on('disconnect', ()=>{
 
 });
 
-socket.on('server-msg', (payload)=>{
+socket.on('server-msg', (payload) =>{
 
-    console.log(payload);
+    console.log(`.. on server-msg..`);
+    console.log(payload); 
 
 })
 
@@ -38,15 +39,18 @@ btnSend.addEventListener('click', ()=>{
     const msg = msgText.value;
     const mail= email.value;
 
-    console.log(msg, mail);
+    //console.log(msg, mail);
     
     const payload = {
         email: mail,
-        msg: msg,
-        id: 123,
-        fecha: new Date().getTime()
+        fecha: new Date(Date.now()).toLocaleString(),
+        msg: msg
     }
 
-    socket.emit('front-msg', payload);
+    socket.emit('front-msg', payload, ( id )=>{
+
+        console.log(`Response from server to me - id: ${id}`);
+
+    });
 
 });

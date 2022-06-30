@@ -1,5 +1,6 @@
 const express = require('express');
 const http = require('http');
+const socketController = require('../sockets/socket.controller');
 
 
 class Server{
@@ -45,26 +46,7 @@ class Server{
 
     sockets(){
 
-        this.io.on('connection', (socket)=>{
-
-            console.log(`socket (client) connected (${socket.id})`);
-
-            socket.on('disconnect', ()=>{
-
-                console.log(`** socket DISconnected (${socket.id}) **`);
-
-            });
-
-            socket.on('front-msg', (payload)=>{
-
-                console.log(payload);
-
-                //From server to all cients (this.io.emit())
-                this.io.emit('server-msg', payload);
-
-            })
-
-        })
+        this.io.on('connection', socketController);
 
     }
 
