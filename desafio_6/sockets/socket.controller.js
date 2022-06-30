@@ -12,29 +12,30 @@ const socketController = (socket)=>{
 
     console.log(`socket (client) connected (${socket.id})`);
 
+    socket.broadcast.emit('hola,iniciamos!');
+
     socket.on('disconnect', ()=>{
         console.log(`** socket DISconnected (${socket.id}) **`);
     });
-
 
 
     socket.on('front-msg', async (payload, callback)=>{           //Callback opcional
 
         //console.log(payload);
 
-        const id = 123;                                     //Por ej.: Enviar cuando ya grabe en mi modelo..
-        callback(id);
+        const received = true;                                     //Por ej.: Enviar cuando ya grabe en mi modelo..
+        callback(received);
 
         try{
 
             await objContenedor.save(payload);
-            
+
+            socket.broadcast.emit('server-msg', payload);       // == this.io.emit('server-msg', payload);
 
         }catch(err){
             console.log(err);
         }
-        
-        socket.broadcast.emit('server-msg', payload);       // == this.io.emit('server-msg', payload);
+
 
     });
 

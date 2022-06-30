@@ -7,7 +7,8 @@
     <title>Desafio 6</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link href="./css/style.css">
+    
+    <link href="./css/styles.css" rel="stylesheet">
 </head>
 <body>
 
@@ -82,7 +83,7 @@
                     <p>Estado: <span id="server_status" class="text-success">online</span></p>
                     
                     <div>
-                        <form>
+                        <form id="msg-form">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
@@ -93,8 +94,12 @@
                                 <label for="floatingTextarea">Comments</label>
                             </div>
 
-                            <button id="sendMsg" type="button" class="btn btn-success">Enviar</button>
+                            <button id="sendMsg" type="submit" class="btn btn-success">Enviar</button>
                         </form>
+
+                        <div class="msgs-container">
+                            <p><span class="msg-mail">baggins@gmail.com</span> <span class="msg-date">[30/6/2022, 16:26:10]</span>: <span class="msg-body">Hola!</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
