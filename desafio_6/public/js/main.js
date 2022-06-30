@@ -11,6 +11,8 @@ let msgText = document.querySelector('#floatingTextarea');
 let btnSend = document.querySelector('#sendMsg');
 let msgContainer = document.querySelector('.msgs-container');
 
+let prodForm = document.querySelector('#prod-form');
+
 socket.on('connect', ()=>{
 
     console.log(`Conectado`);
@@ -62,7 +64,49 @@ msgForm.addEventListener('submit', (e)=>{
 const addMsgElmt = (obj)=>{
 
     msgContainer.innerHTML += `
-        <p><span class="msg-mail">${obj.email}</span> <span class="msg-date">${obj.fecha}</span>: <span class="msg-body">${obj.msg}</span></p>
+        <p><span class="msg-mail">${obj.email}</span> <span class="msg-date">[${obj.fecha}]</span>: <span class="msg-body">${obj.msg}</span></p>
     `;
 
 }
+
+window.onload = function(){
+    
+    socket.emit('get-prods-onload', 'get-prodcuts', (prods)=>{
+
+        console.log(`tenemos los prods??`);
+        console.log(prods);
+
+    });
+
+}
+
+prodForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+
+    let formData = new FormData(prodForm);
+
+    const payload = {
+
+        title: formData.get('title'),
+        price: formData.get('price'),
+        thumbnail: formData.get('thumbnail')
+
+    }
+
+    console.log(payload);
+
+    socket.emit('add-product', payload, (received)=>{
+
+        console.log(`Response from server only to me. Received: ${received}`);
+
+    })
+
+});
+
+socket.on('server-prod-added', payload=>{
+
+    console.log(`Recibimos.....`);
+    console.log(payload);
+
+
+});

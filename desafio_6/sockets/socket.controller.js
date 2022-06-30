@@ -1,12 +1,8 @@
 const Contenedor = require('../models/Contenedor');
 
-const objContenedor = new Contenedor('./mensajes.txt');
-/*
-const today = new Date();
-const yyyy  = today.getFullYear();
-let mm      = today.getMonth();
-let dd      = today.getDate();
-*/
+const objMsgContenedor = new Contenedor('./mensajes.txt');
+
+const objProdContenedor = new Contenedor('./productos.txt');
 
 const socketController = (socket)=>{
 
@@ -28,7 +24,7 @@ const socketController = (socket)=>{
 
         try{
 
-            await objContenedor.save(payload);
+            await objMsgContenedor.save(payload);
 
             socket.broadcast.emit('server-msg', payload);       // == this.io.emit('server-msg', payload);
 
@@ -36,6 +32,41 @@ const socketController = (socket)=>{
             console.log(err);
         }
 
+
+    });
+
+    socket.on('get-prods-onload', async(payload, callback)=>{
+
+        try{
+
+            let prods = await objProdContenedor.getAll();
+
+            callback(prods);
+
+        }catch(err){
+
+            console.log(err);
+
+        }
+
+    });
+
+    socket.on('add-product', async(payload, callback)=>{
+
+        try{
+
+            await objProdContenedor.save(payload);
+
+            socket.broadcast.emit('server-prod-added', payload);
+
+            const received = true;
+            callback(received);
+
+        }catch(err){
+
+            console.log(err);
+
+        }
 
     });
 

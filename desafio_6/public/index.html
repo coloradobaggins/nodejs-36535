@@ -31,15 +31,15 @@
 
                 <div class="product-container">
 
-                    <form id="add_form" action="/productos" method="post">
+                    <form id="prod-form" name="prod-form">
                         <div class="mb-3">
                             <label for="title" class="form-label">Producto</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Nombre del producto">
+                            <input type="text" class="form-control" id="title" name="title" required placeholder="Nombre del producto">
                         </div>
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="price" name="price" placeholder="Precio">
+                            <input type="number" class="form-control" id="price" name="price" required placeholder="Precio">
                         </div>
 
                         <div class="mb-3">
@@ -47,7 +47,7 @@
                             <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="url thumbnail">
                         </div>
                         
-                        <button id="sendBtn" type="submit" class="btn btn-primary">Ingresar</button>
+                        <button id="sendBtn" type="submit" class="btn btn-success">Ingresar</button>
                     </form>
 
                 </div>
@@ -96,15 +96,12 @@
 
                             <button id="sendMsg" type="submit" class="btn btn-success">Enviar</button>
                         </form>
-
                         <div class="msgs-container">
-                            <p><span class="msg-mail">baggins@gmail.com</span> <span class="msg-date">[30/6/2022, 16:26:10]</span>: <span class="msg-body">Hola!</span></p>
+                            <!--<p><span class="msg-mail">baggins@gmail.com</span> <span class="msg-date">[30/6/2022, 16:26:10]</span>: <span class="msg-body">Hola!</span></p>-->
                         </div>
                     </div>
                 </div>
             </div>
-
-            
 
         </div>
     </div>
