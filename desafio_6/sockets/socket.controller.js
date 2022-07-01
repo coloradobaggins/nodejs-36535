@@ -8,8 +8,6 @@ const socketController = (socket)=>{
 
     console.log(`socket (client) connected (${socket.id})`);
 
-    socket.broadcast.emit('hola,iniciamos!');
-
     socket.on('disconnect', ()=>{
         console.log(`** socket DISconnected (${socket.id}) **`);
     });
@@ -57,7 +55,9 @@ const socketController = (socket)=>{
 
             await objProdContenedor.save(payload);
 
-            socket.broadcast.emit('server-prod-added', payload);
+            const allProds = await objProdContenedor.getAll();
+
+            socket.broadcast.emit('server-prod-added', allProds);
 
             const received = true;
             callback(received);

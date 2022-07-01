@@ -1,10 +1,6 @@
-console.log(`Hola front!`);
-
 const socket = io();
 
 let statusIndicator = document.querySelector('#server_status');
-
-
 let msgForm = document.querySelector('#msg-form');
 let email   = document.querySelector('#email');
 let msgText = document.querySelector('#floatingTextarea');
@@ -12,6 +8,23 @@ let btnSend = document.querySelector('#sendMsg');
 let msgContainer = document.querySelector('.msgs-container');
 
 let prodForm = document.querySelector('#prod-form');
+let theProds = [];
+
+//Cargar productos al inicio
+window.onload = function(){
+
+    socket.emit('get-prods-onload', 'get-prodcuts', (prods)=>{
+
+        theProds = prods;
+
+        console.log(`tenemos los prods??`);
+        console.log(theProds);
+
+        createProdTable(theProds);
+
+    });
+
+}
 
 socket.on('connect', ()=>{
 
@@ -31,13 +44,14 @@ socket.on('disconnect', ()=>{
 
 });
 
+//Escucha de mensaje del server
 socket.on('server-msg', payload=>{
 
     addMsgElmt(payload);
 
 });
 
-
+//Envio mensaje
 msgForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     
@@ -61,6 +75,7 @@ msgForm.addEventListener('submit', (e)=>{
 
 });
 
+//Append de mensaje
 const addMsgElmt = (obj)=>{
 
     msgContainer.innerHTML += `
@@ -69,31 +84,20 @@ const addMsgElmt = (obj)=>{
 
 }
 
-window.onload = function(){
-    
-    socket.emit('get-prods-onload', 'get-prodcuts', (prods)=>{
 
-        console.log(`tenemos los prods??`);
-        console.log(prods);
-
-    });
-
-}
-
+//Envio de producto nuevo
 prodForm.addEventListener('submit', (e)=>{
     e.preventDefault();
 
     let formData = new FormData(prodForm);
 
     const payload = {
-
         title: formData.get('title'),
         price: formData.get('price'),
         thumbnail: formData.get('thumbnail')
-
     }
 
-    console.log(payload);
+    theProds.push(payload);
 
     socket.emit('add-product', payload, (received)=>{
 
@@ -101,12 +105,26 @@ prodForm.addEventListener('submit', (e)=>{
 
     })
 
+    createProdTable(theProds);
+
 });
 
+//Respuesta del server ante un producto agregado
 socket.on('server-prod-added', payload=>{
 
-    console.log(`Recibimos.....`);
-    console.log(payload);
-
+    createProdTable(payload);
 
 });
+
+//Template hbs. Levanta e imprime
+const createProdTable = async (prod)=>{
+
+    let tableTemplate = await fetch('../partials/tableProd.hbs');
+    let textTableTemplate = await tableTemplate.text();
+
+    let template = Handlebars.compile(textTableTemplate);
+    let templateRendered = template({prods: prod});
+
+    document.querySelector('.prod-table').innerHTML = templateRendered;
+
+}
