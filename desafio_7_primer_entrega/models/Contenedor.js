@@ -179,6 +179,36 @@ module.exports = class Contenedor{
 
     }
 
+    async getItemsByKey(idCarro){
+
+        try{
+
+            const allItems = await this.getAll();
+            const filteredById = await this.getById(idCarro);
+
+            console.log(filteredById);
+            console.log('********');
+            console.log(filteredById.productos);
+
+            /*
+            console.log('********');
+            console.log(idCarro);
+            console.log(allItems);
+            console.log(allItems[idCarro]);
+            console.log(allItems[idCarro].productos);
+            console.log(allItems.length);
+            console.log(allItems['productos']);
+            console.log('********');
+            */
+
+            return filteredById.productos;
+
+        }catch(err){
+            throw `Error${err}`;
+        }
+
+    }
+
 
     async __readFile(){
 

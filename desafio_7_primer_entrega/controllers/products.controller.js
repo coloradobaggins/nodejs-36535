@@ -45,7 +45,7 @@ const productsPost = async (req, res)=>{
 
     const body = req.body;
 
-    const newProd = body;
+    body.timestamp = new Date().now();
 
     try{
 

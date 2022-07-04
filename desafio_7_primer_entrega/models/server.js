@@ -26,7 +26,8 @@ class Server{
     routes(){
 
         this.app.use(this.productsRoute, require('../routes/products.rutes'));
-        this.app.use(this.shoppingCartRoute, require('../routes/shoppingCart.routes'));
+        this.app.use(this.shoppingCartRoute, require('../routes/shopping-cart.routes'));
+        this.app.use('*', require('../routes/not-found.routes'));
 
     }
 
