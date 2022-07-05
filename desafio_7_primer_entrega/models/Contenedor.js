@@ -63,26 +63,36 @@ module.exports = class Contenedor{
 
     }
 
-    async update(id, obj){
+    async update(id, objForUpdate){
 
-        let parsedId = parseInt(id);
+        console.log(`update.. id: ${id}, obj:`);
 
-        /*
-        console.log(`id: ${parsedId}`);
-        console.log(obj);*/
+        if(isNaN(id))
+            throw `id tiene que ser un numero`;
+
+        //Check si tenemos ese item
+        let hasItem= await this.getById(id);
+        
+
+        if(hasItem !== null){   //El producto existe
+
+            console.log(`el item existe.. update!`);
+
+            //Traeer todos items
+            let allItems = await this.getAll();
+
+            let itemFoundIndex = allItems.findIndex((item)=>item.id == id);
+
+            console.log(`index found in array: ${itemFoundIndex}`);
+
+            allItems[itemFoundIndex] = objForUpdate;
+
+            await this.__writeFile(JSON.stringify(allItems, null, 2));
 
 
-        let item = await this.getById(parsedId); //Puede ser null
-
-        let allProducts = await this.getAll();
-
-        if(item != null){
-
-            
-            
+        }else{
+            throw `No existe item con el id buscado: ${id}`;
         }
-
-        return false;
 
     }
 
@@ -179,7 +189,8 @@ module.exports = class Contenedor{
 
     }
 
-    async getItemsByKey(idCarro){
+    /*
+    async getProdsFromCart(idCarro){
 
         try{
 
@@ -190,25 +201,16 @@ module.exports = class Contenedor{
             console.log('********');
             console.log(filteredById.productos);
 
-            /*
-            console.log('********');
-            console.log(idCarro);
-            console.log(allItems);
-            console.log(allItems[idCarro]);
-            console.log(allItems[idCarro].productos);
-            console.log(allItems.length);
-            console.log(allItems['productos']);
-            console.log('********');
-            */
 
             return filteredById.productos;
 
         }catch(err){
             throw `Error${err}`;
         }
+        
 
     }
-
+    */
 
     async __readFile(){
 

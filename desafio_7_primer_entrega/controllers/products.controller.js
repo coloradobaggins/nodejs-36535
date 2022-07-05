@@ -45,7 +45,7 @@ const productsPost = async (req, res)=>{
 
     const body = req.body;
 
-    body.timestamp = new Date().now();
+    body.timestamp = Date.now();
 
     try{
 
@@ -60,7 +60,27 @@ const productsPost = async (req, res)=>{
         console.error(err);
     }
 
-    
+}
+
+const productUpdate = async (req, res)=>{
+
+    //const prodId    = parseInt(req.params.id);
+    const prodId    = req.params.id;
+    const prod      = req.body;
+
+    let itemsResponse = [];
+
+    try{    
+
+        itemsResponse = await objContenedor.update(prodId, prod);
+
+    }catch(err){
+        console.log(err);
+    }
+
+    res.json({
+        itemsResponse
+    });
 
 }
 
@@ -87,6 +107,7 @@ const productDelete = async (req, res)=>{
 
 
 module.exports = {  productsGet, 
-                    productsPost, 
+                    productsPost,
+                    productUpdate,
                     productDelete
                  };
