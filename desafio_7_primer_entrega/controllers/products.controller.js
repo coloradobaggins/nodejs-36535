@@ -1,6 +1,6 @@
 const Contenedor = require('../models/Contenedor');
 
-const objContenedor = new Contenedor('productos.txt');
+const objContenedor = new Contenedor('db/productos.txt');
 
 const productsGet = async (req, res)=>{
 
@@ -51,14 +51,14 @@ const productsPost = async (req, res)=>{
 
         await objContenedor.save(body);
 
-        res.json({
-            body
-        });
-
     }catch(err){
 
         console.error(err);
     }
+
+    res.json({
+        status:"send"
+    });
 
 }
 
@@ -92,15 +92,15 @@ const productDelete = async (req, res)=>{
 
         await objContenedor.deleteById(parseInt(id));
 
-        res.json({
-            id
-        });
-    
 
     }catch(err){
 
         console.log(err);
     }
+
+    res.json({
+        id
+    });
 
 }
 

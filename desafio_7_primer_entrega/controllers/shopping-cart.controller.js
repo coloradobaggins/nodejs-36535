@@ -2,7 +2,7 @@
 //const objCarrito = new Contenedor('carrito.txt');
 
 const Carrito = require('../models/Carrito');
-const objCarrito = new Carrito('carrito.txt');
+const objCarrito = new Carrito('db/carrito.txt');
 
 // 1- Crea un carrito y devuelve su id
 const postShoppingCart = async (req, res)=>{

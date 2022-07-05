@@ -8,9 +8,27 @@ const {
 
 const router = Router();
 
+/**
+ * Middleware
+ * Chequea que administrador sea true para ejecutar next y pasar a la siguiente funcion
+ */
+const isAdmin = (req, res, next)=>{
+
+    const ADMINISTRADOR = true;
+
+    if(ADMINISTRADOR){   
+        next();
+    }else{
+        res.json({
+            error:-1,
+            descripcion: `Ruta ${req.originalUrl} y metodo ${req.method} no autorizas`
+        })
+    }
+}
+
 router.get('/:id?', productsGet);
-router.post('/', productsPost);
-router.put('/:id', productUpdate);
-router.delete('/:id', productDelete);
+router.post('/', isAdmin, productsPost);
+router.put('/:id', isAdmin, productUpdate);
+router.delete('/:id', isAdmin, productDelete);
 
 module.exports = router;

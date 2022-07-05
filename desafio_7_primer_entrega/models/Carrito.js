@@ -17,11 +17,9 @@ class Carrito extends Contenedor{
 
         cartObj.timestamp = Date.now();
 
-        if(!cartObj.hasOwnProperty("productos")){   //Si no envian el array con productos (al menos vacio), lo creo
+        if(!cartObj.hasOwnProperty("productos")){   //Crear [] productos vacio si no viene ..
             cartObj.productos = [];
         }
-
-        //console.log(cartObj);
 
        return this.save(cartObj);
 
@@ -32,8 +30,6 @@ class Carrito extends Contenedor{
      * @param {*} id carrito a eliminar
      */
     async deleteCartById(id){
-
-        //const getAllCart = await this.getAll();
 
         this.deleteById(id);
 
@@ -49,13 +45,8 @@ class Carrito extends Contenedor{
 
         try{
 
-            //const allItems = await this.getAll();
             const filteredById = await this.getById(idCarro);
-            /*
-            console.log(filteredById);
-            console.log('********');
-            console.log(filteredById.productos);
-            */
+
             let prods = filteredById.productos;
             return (prods.length !== 0) ? prods : null;
 
@@ -86,8 +77,6 @@ class Carrito extends Contenedor{
                 throw `Este carrito no tiene la propiedad 'productos' definida`;
             }   
 
-            
-            
             let carritoProds = allCart[foundCarritoIndex].productos;
             
             let existProduct = carritoProds.some(p=>p.id === prods.id);     //Check si ya existe este producto en este carrito por su id..
