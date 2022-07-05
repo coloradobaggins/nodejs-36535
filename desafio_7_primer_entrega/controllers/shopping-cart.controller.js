@@ -71,34 +71,47 @@ const addProdToCart = async (req, res)=>{
 
     let cartId = parseInt(req.params.id);
     let prods = req.body;
-
-    //Verificar si existe el carrito con este id..
-    //Si existe, agrego los prods del body
-
+    let prodAdded = false;
+    
     try{
 
-        await objCarrito.addProdsToCart(cartId, prods);
-
-
+        prodAdded = await objCarrito.addProdsToCart(cartId, prods);
 
     }catch(err){
         console.log(err);
     }
 
-    res.send(`Add prod to cart...id: ${cartId}`);
+    res.json({
+        prodAdded
+    })
 }
 
 
 
+const deleteProdFromCart = async (req, res)=>{
 
-const deleteProdFromCart = (req, res)=>{
 
-    console.log("deleteProdFromCart");
+    let cartId = parseInt(req.params.id);
+    let prodId = parseInt(req.params.id_prod);
+    
+    let deleted = false;
 
+    try{
+
+        deleted = await objCarrito.deleteProdFromCart(cartId, prodId);
+
+    }catch(err){
+        console.log(err);
+    }
+
+    res.json({
+        deleted:deleted
+    })
+    
 }
 
-module.exports = {  
-    getShoppingCart, 
+module.exports = {
+    getShoppingCart,
     postShoppingCart,
     deleteShoppingCart,
     addProdToCart,
