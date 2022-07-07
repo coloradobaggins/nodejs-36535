@@ -1,0 +1,20 @@
+[
+  {
+    "title": "plasticola",
+    "price": "122",
+    "thumbnail": "",
+    "id": 1
+  },
+  {
+    "title": "regla",
+    "price": "200",
+    "thumbnail": "https://cdn0.iconfinder.com/data/icons/fitness-95/24/height-measurement-256.png",
+    "id": 2
+  },
+  {
+    "title": "teclado",
+    "price": "6800",
+    "thumbnail": "https://cdn1.iconfinder.com/data/icons/music-instrument-vol-2/512/workstation_electric_keyboard_piano-128.png",
+    "id": 3
+  }
+]

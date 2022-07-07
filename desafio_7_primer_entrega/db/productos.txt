@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Mate",
+    "description": "Matienzo",
+    "code": 12,
+    "price": "4200",
+    "stock": 8,
+    "thumbnail": "",
+    "timestamp": 1656891035531,
+    "id": 1
+  },
+  {
+    "name": "pc",
+    "description": "la pc",
+    "code": 5,
+    "price": "22g00",
+    "stock": 20,
+    "thumbnail": "",
+    "timestamp": 1656891055555,
+    "id": 2
+  },
+  {
+    "name": "Auriculares",
+    "description": "Auriculares inalambricos",
+    "code": 62,
+    "price": "9200",
+    "stock": 4,
+    "thumbnail": "",
+    "timestamp": 1656986068634,
+    "id": 3
+  },
+  {
+    "name": "Teclado Logi k600",
+    "description": "Inalambrico, bluethooth",
+    "code": 142,
+    "price": "7200",
+    "stock": 34,
+    "thumbnail": "",
+    "timestamp": 1657024839475,
+    "id": 4
+  }
+]

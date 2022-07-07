@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Mouse",
+    "price": 55,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id": 2
+  },
+  {
+    "title": "Resma A4",
+    "price": 2054.5,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id": 5
+  },
+  {
+    "title": "Set de lapices",
+    "price": 254.5,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id": 6
+  },
+  {
+    "title": "Set de lapices 2 ",
+    "price": 154.5,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/electronics-and-gadget-3/64/MOUSE-devices-electronics-gadget-tools-256.png",
+    "id": 7
+  },
+  {
+    "title": "minas",
+    "price": "123",
+    "thumbnail": "",
+    "id": 9
+  },
+  {
+    "title": "goma",
+    "price": "12",
+    "thumbnail": "",
+    "id": 10
+  },
+  {
+    "title": "bb",
+    "price": "44",
+    "thumbnail": "",
+    "id": 11
+  },
+  {
+    "title": "lapices",
+    "price": "123",
+    "thumbnail": "",
+    "id": 12
+  },
+  {
+    "title": "chip",
+    "price": "22",
+    "thumbnail": "",
+    "id": 13
+  },
+  {
+    "title": "pc",
+    "price": "500000",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/scenarium-vol-1-2/128/006_laptop_computer_workspace_workplace_desktop_device_screen-128.png",
+    "id": 14
+  },
+  {
+    "title": "Celular",
+    "price": "70000",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/vol-3/128/iphone-512.png",
+    "id": 15
+  }
+]

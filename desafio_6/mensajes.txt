@@ -1,0 +1,32 @@
+[
+  {
+    "email": "baggins@gmail.com",
+    "fecha": "30/6/2022, 16:24:16",
+    "msg": "primer comentario..",
+    "id": 1
+  },
+  {
+    "email": "baggins@gm.com",
+    "fecha": "30/6/2022, 16:26:10",
+    "msg": "Yo soy el cliente 2",
+    "id": 2
+  },
+  {
+    "email": "mai@mai.cm",
+    "fecha": "30/6/2022, 16:26:35",
+    "msg": "Yo vengo del cliente 3!!",
+    "id": 3
+  },
+  {
+    "email": "baggins@gmail.com",
+    "fecha": "30/6/2022, 22:30:32",
+    "msg": "Hey, siguen ahi?",
+    "id": 4
+  },
+  {
+    "email": "mai@mai.cm",
+    "fecha": "30/6/2022, 22:30:43",
+    "msg": "aca estamos!",
+    "id": 5
+  }
+]
