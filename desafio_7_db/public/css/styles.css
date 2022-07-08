@@ -1,0 +1,12 @@
+
+
+.msg-mail{
+    color: blue;
+}
+.msg-date{
+    color:red;
+}
+.msg-body{
+    color:green;
+    font-weight:500;
+}
