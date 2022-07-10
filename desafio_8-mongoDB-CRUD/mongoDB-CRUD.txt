@@ -1,4 +1,9 @@
 Entregable clase 18 - MongoDB CRUD
+
+Consigna: Utilizando Mongo Shell, crear una base de datos llamada ecommerce que contenga
+dos colecciones: mensajes y productos.
+
+
 show dbs
 use ecommerce
 
