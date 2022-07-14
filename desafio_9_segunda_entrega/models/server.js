@@ -23,7 +23,7 @@ class Server{
     routes(){
 
         this.app.use(this.productsRoutes, require('../routes/products.routes'));
-        //this.app.use(this.cartRoutes, require('../routes/cart.routes'));
+        this.app.use(this.cartRoutes, require('../routes/cart.routes'));
         
     }
 

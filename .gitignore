@@ -12,3 +12,6 @@ node_modules
 
 #Ignora archivos de configuracion sass
 .sass-cache
+
+#Sepecific files
+desafio_9_segunda_entrega/database/firebase_config/no-subir-coder-node-ecommerce-firebase.json

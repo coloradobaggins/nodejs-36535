@@ -1,7 +1,7 @@
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("../database/firebase_config/coder-node-91958-firebase-adminsdk-j31ey-cd9e7b41b1.json");
+var serviceAccount = require("../database/firebase_config/no-subir-coder-node-ecommerce-firebase.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -38,7 +38,11 @@ class ContenedorFirebase{
 
         try{
 
-            
+            let doc = this.query.doc(id);
+            let item = await doc.get();
+            let docData = item.data();
+            docData.id = item.id;
+            return docData;
 
         }catch(err){
             console.log(err);
@@ -59,11 +63,39 @@ class ContenedorFirebase{
             */
            items = items.docs.map((doc)=>{
                 //return {id: doc.id, data:doc.data()}
-                return doc.data();
+                let theData = doc.data();
+                theData.id = doc.id;
+                return theData;
            });
 
             return items;
 
+        }catch(err){
+            console.log(err);
+        }
+
+    }
+
+    async deleteById(id){
+
+        try{
+
+           let theDoc = this.query.doc(id);
+           let item = await theDoc.delete();
+           return item;
+
+        }catch(err){
+            console.log(err);
+        }
+
+    }
+
+    async update(id, obj){
+
+        try{
+            let theDoc = this.query.doc(id);
+            let item = await theDoc.update(obj);
+            return 'updated';
         }catch(err){
             console.log(err);
         }

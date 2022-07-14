@@ -91,5 +91,31 @@
       }
     ],
     "id": 5
+  },
+  {
+    "productos": [
+      {
+        "name": "Mate",
+        "description": "Matienzo",
+        "code": 12,
+        "price": "4200",
+        "stock": 8,
+        "thumbnail": "",
+        "timestamp": 1656891035531,
+        "id": 1
+      },
+      {
+        "name": "Teclado Logi k601",
+        "description": "Inalambrico, bluethooth",
+        "code": 142,
+        "price": "7200",
+        "stock": 34,
+        "thumbnail": "",
+        "timestamp": 1657024839475,
+        "id": 4
+      }
+    ],
+    "timestamp": 1657809249694,
+    "id": 9
   }
 ]

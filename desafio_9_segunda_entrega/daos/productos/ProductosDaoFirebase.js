@@ -7,15 +7,23 @@ class ProductosDaoFirebase extends ContenedorFirebase{
     }
 
     async saveProduct(prod){
-
         await this.save(prod)
+    }
 
+    async getProductById(id){
+        return await this.getById(id);
     }
 
     async getAllProducts(){
-
         return await this.getAll();
+    }
 
+    async deleteProduct(id){
+        await this.deleteById(id);
+    }
+
+    async updateProduct(prodId, prod){
+        await this.update(prodId, prod)
     }
 }
 
