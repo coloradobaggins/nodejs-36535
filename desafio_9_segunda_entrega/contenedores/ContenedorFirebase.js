@@ -58,7 +58,8 @@ class ContenedorFirebase{
             }));
             */
            items = items.docs.map((doc)=>{
-                return {id: doc.id, data:doc.data()}
+                //return {id: doc.id, data:doc.data()}
+                return doc.data();
            });
 
             return items;
