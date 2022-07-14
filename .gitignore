@@ -14,4 +14,4 @@ node_modules
 .sass-cache
 
 #Sepecific files
-desafio_9_segunda_entrega/database/firebase_config/no-subir-coder-node-ecommerce-firebase.json
+desafio_9_segunda_entrega/database/firebase_config/archivo-credenciales-node-ecommerce-firebase.json

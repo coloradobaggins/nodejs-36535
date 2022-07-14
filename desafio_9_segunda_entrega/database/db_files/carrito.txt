@@ -105,14 +105,14 @@
         "id": 1
       },
       {
-        "name": "Teclado Logi k601",
-        "description": "Inalambrico, bluethooth",
+        "name": "Mouse Genius",
+        "description": "cableado",
         "code": 142,
-        "price": "7200",
-        "stock": 34,
+        "price": "1000",
+        "stock": 4,
         "thumbnail": "",
         "timestamp": 1657024839475,
-        "id": 4
+        "id": 5
       }
     ],
     "timestamp": 1657809249694,

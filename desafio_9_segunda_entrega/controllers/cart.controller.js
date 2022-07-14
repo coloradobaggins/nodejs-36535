@@ -6,11 +6,11 @@ let objCartDao;
 if(dbEngine === 'FILE'){
     const CarritosDaoArchivos = require('../daos/carrito/CarritosDaoArchivos');
     objCartDao = new CarritosDaoArchivos();
-}/*else if(dbEngine === 'MONGODB'){
+}else if(dbEngine === 'MONGODB'){
 
-    const ProductosDaoMongoDB = require('../daos/productos/ProductosDaoMongoDB');
-    objCartDao = new CarritoDaoMongoDB();
-}else if(dbEngine === 'FIREBASE'){
+    const CarritosDaoMongoDB = require('../daos/carrito/CarritosDaoMongoDB');
+    objCartDao = new CarritosDaoMongoDB();
+}/*else if(dbEngine === 'FIREBASE'){
 
     const ProductosDaoFirebase = require('../daos/productos/ProductosDaoFirebase');
     objCartDao = new CarritoDaoFirebase();
@@ -31,6 +31,7 @@ const postShoppingCart = async (req, res)=>{
     }catch(err){
 
         console.log(err);
+        res.status(400).json({error: err});
 
     }
 
@@ -43,7 +44,7 @@ const postShoppingCart = async (req, res)=>{
 // 2- Vaciar y borrar un carrito por su id
 const deleteShoppingCart = async (req, res) =>{
 
-    let cartId = parseInt(req.params.id);
+    let cartId = req.params.id;
 
     try{
 
@@ -51,6 +52,7 @@ const deleteShoppingCart = async (req, res) =>{
 
     }catch(err){
         console.log(err);
+        res.status(400).json({error: err});
     }
 
     res.status(200).json({status: 'ok'});
@@ -101,7 +103,6 @@ const addProdToCart = async (req, res)=>{
 }
 
 
-//TODO::!!
 const deleteProdFromCart = async (req, res)=>{
 
 
@@ -112,7 +113,7 @@ const deleteProdFromCart = async (req, res)=>{
 
     try{
 
-        deleted = await objCarrito.deleteProdFromCart(cartId, prodId);
+        deleted = await objCartDao.deleteProdFromCart(cartId, prodId);
 
     }catch(err){
         console.log(err);

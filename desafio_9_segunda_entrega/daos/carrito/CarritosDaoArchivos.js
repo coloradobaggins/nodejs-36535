@@ -56,7 +56,7 @@ class CarritosDaoArchivos extends ContenedorArchivo{
     }
 
     async addProdsToCart(cartId, prods){
-        
+
         const cart = await this.getById(cartId);
 
         let prodAdded = false;
@@ -74,8 +74,6 @@ class CarritosDaoArchivos extends ContenedorArchivo{
             let carritoProds = allCart[foundCarritoIndex].productos;
             
             let existProduct = carritoProds.some(p=>p.id === prods.id);     //Check si ya existe este producto en este carrito por su id..
-
-            console.log(`Existe en este carrito id ${cartId} el producto?? : ${existProduct}`);
 
             if(!existProduct){
                 
@@ -95,6 +93,52 @@ class CarritosDaoArchivos extends ContenedorArchivo{
         }
         
         return prodAdded;
+    }
+
+    async deleteProdFromCart(cartId, prodId){
+
+        let prodDeleted = false;
+
+        let cart = await this.getById(cartId);  
+
+        if(cart!=null){   //Check si tenemos cart con este id
+
+            let prods = await this.getProdsFromCart(cartId);
+            
+            if(prods != null){
+
+                let allCart = await this.getAll();
+
+                let filteredCart = allCart.find(cart=> cart.id ==cartId);
+
+                let cartProds = filteredCart.productos;
+
+                let foundProdIndex = cartProds.findIndex(p=>p.id===prodId);
+
+                if(foundProdIndex > -1){
+
+                    cartProds.splice(foundProdIndex, 1);
+
+                    await this.__writeFile(JSON.stringify(allCart, null, 2));
+
+                    prodDeleted = true;
+
+                }else{
+                    
+                    throw `prod index no encontrado`;
+
+                }
+
+            }else{
+                throw `Carrito sin productos`;
+            }
+            
+        }else{
+            throw `Este carrito esta vacio`;
+        }
+
+        return prodDeleted;
+
     }
 
 }

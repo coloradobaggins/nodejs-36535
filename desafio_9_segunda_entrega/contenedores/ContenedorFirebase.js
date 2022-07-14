@@ -1,7 +1,7 @@
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("../database/firebase_config/no-subir-coder-node-ecommerce-firebase.json");
+var serviceAccount = require("../database/firebase_config/archivo-credenciales-node-ecommerce-firebase.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)

@@ -2,8 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const carritoSchema = new Schema({
 
-    products: {
-
+    productos: {
+        type: Array,
+        required: true,
+        default: []
     },
     timestamp: {
         type: Number,
