@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Mate",
+    "description": "Matienzo",
+    "code": 12,
+    "price": "4200",
+    "stock": 8,
+    "thumbnail": "",
+    "timestamp": 1656891035531,
+    "id": 1
+  },
+  {
+    "name": "Galletitas",
+    "description": "Don saturn",
+    "code": 142,
+    "price": "200",
+    "stock": 134,
+    "thumbnail": "",
+    "timestamp": 1657662076359,
+    "id": 4
+  },
+  {
+    "name": "Bufanda",
+    "description": "sin marca",
+    "code": 3,
+    "price": "2000",
+    "stock": 3,
+    "thumbnail": "",
+    "timestamp": 1657664813838,
+    "id": 5
+  }
+]
