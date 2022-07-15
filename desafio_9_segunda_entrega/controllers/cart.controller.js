@@ -10,12 +10,12 @@ if(dbEngine === 'FILE'){
 
     const CarritosDaoMongoDB = require('../daos/carrito/CarritosDaoMongoDB');
     objCartDao = new CarritosDaoMongoDB();
-}/*else if(dbEngine === 'FIREBASE'){
+}else if(dbEngine === 'FIREBASE'){
 
-    const ProductosDaoFirebase = require('../daos/productos/ProductosDaoFirebase');
-    objCartDao = new CarritoDaoFirebase();
+    const CarritosDaoFirebase = require('../daos/carrito/CarritosDaoFirebase');
+    objCartDao = new CarritosDaoFirebase();
 
-}*/
+}
 
 
 // 1- Crea un carrito y devuelve su id
@@ -108,7 +108,7 @@ const deleteProdFromCart = async (req, res)=>{
 
 
     let cartId = req.params.id;
-    let prodId = parseInt(req.params.id_prod);
+    let prodId = req.params.id_prod;
     
     let deleted = false;
 

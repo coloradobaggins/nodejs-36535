@@ -96,6 +96,7 @@ class ContenedorFirebase{
             let theDoc = this.query.doc(id);
             let item = await theDoc.update(obj);
             return 'updated';
+            
         }catch(err){
             console.log(err);
         }
