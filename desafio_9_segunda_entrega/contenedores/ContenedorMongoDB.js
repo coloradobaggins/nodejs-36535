@@ -31,6 +31,8 @@ class ContenedorMongoDB{
 
     }
 
+    
+
     async getById(id){
 
         try{
@@ -67,9 +69,6 @@ class ContenedorMongoDB{
 
     }
 
-    async deleteAll(){
-
-    }
 
 }
 

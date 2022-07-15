@@ -31,7 +31,7 @@ const postShoppingCart = async (req, res)=>{
     }catch(err){
 
         console.log(err);
-        res.status(400).json({error: err});
+        res.status(400).json({error: 'not ok'});
 
     }
 
@@ -62,7 +62,7 @@ const deleteShoppingCart = async (req, res) =>{
 // 3- Listar productos de un carrito
 const getShoppingCart = async (req, res)=>{
     
-    let cartId = parseInt(req.params.id);
+    let cartId = req.params.id;
 
     console.log(`Estamos aca, id: ${cartId}`);
 
@@ -75,6 +75,7 @@ const getShoppingCart = async (req, res)=>{
        
     }catch(err){
         console.log(err);
+        res.status(400).json({error: 'not ok'});
     }
 
     res.json({
@@ -85,7 +86,7 @@ const getShoppingCart = async (req, res)=>{
 
 const addProdToCart = async (req, res)=>{
 
-    let cartId = parseInt(req.params.id);
+    let cartId = req.params.id;
     let prods = req.body;
     let prodAdded = false;
     
@@ -106,7 +107,7 @@ const addProdToCart = async (req, res)=>{
 const deleteProdFromCart = async (req, res)=>{
 
 
-    let cartId = parseInt(req.params.id);
+    let cartId = req.params.id;
     let prodId = parseInt(req.params.id_prod);
     
     let deleted = false;
