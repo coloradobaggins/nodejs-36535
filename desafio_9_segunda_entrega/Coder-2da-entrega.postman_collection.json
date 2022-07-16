@@ -1,0 +1,681 @@
+{
+	"info": {
+		"_postman_id": "b056d55e-fb7b-4282-b158-dec94fb28d95",
+		"name": "Coder-2da-entrega",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20973496"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Firebase",
+					"item": [
+						{
+							"name": "Productos -Firebase - Add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Teclado\",\r\n    \"description\": \"Piano teclado\",\r\n    \"code\": 142255,\r\n    \"price\": 22200,\r\n    \"stock\": 4,\r\n    \"thumbnail\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/productos/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Productos- Firebase - DeleteById",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/productos/EGwkkYf9N6GOk0DkjUE0",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"EGwkkYf9N6GOk0DkjUE0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Mongo",
+					"item": [
+						{
+							"name": "Productos -Mongo - Add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Nuevo Teclado\",\r\n    \"description\": \"Piano nuevo teclado\",\r\n    \"code\": 142255,\r\n    \"price\": 22200,\r\n    \"stock\": 4,\r\n    \"thumbnail\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/productos/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Productos- Mongo- DeleteById",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/productos/62d333ee6e774b3b551ffabf",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"62d333ee6e774b3b551ffabf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "File",
+					"item": [
+						{
+							"name": "Productos - Add Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Producto a file\",\r\n    \"description\": \"descccc\",\r\n    \"code\": 12255,\r\n    \"price\": 22200,\r\n    \"stock\": 4,\r\n    \"thumbnail\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/productos/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Productos - File - Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\",\r\n    \"description\": \"DATO A ACTUALIZAR!\",\r\n    \"code\": 12,\r\n    \"price\": \"4200\",\r\n    \"stock\": 8,\r\n    \"thumbnail\": \"\",\r\n    \"timestamp\": 1656891035531,\r\n    \"id\": 1\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/productos/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Productos- Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/productos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos - Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nuevo modelo - auris\",\r\n    \"description\": \"Verificando model\",\r\n    \"code\": 12255,\r\n    \"price\": 22200,\r\n    \"stock\": 4,\r\n    \"thumbnail\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/productos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos - FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos - DeleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/productos/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos - Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Update descripcion!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "MongoDB",
+					"item": [
+						{
+							"name": "Carrito - Mongo - Crear carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productos\": [\r\n        {\r\n            \"_id\": \"62cf4b7a0e132711a9310d60\"\r\n        },\r\n        {\r\n            \"_id\": \"62cf73f8e911d884696f00cd\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Carrito - Mongo - Add producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"62d2ddeb800594059d77b151\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/carrito/62d2f98747aebb921bf4387f/productos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"62d2f98747aebb921bf4387f",
+										"productos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Carrito - Listar un carrito",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/carrito/62d2f98747aebb921bf4387f/productos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"62d2f98747aebb921bf4387f",
+										"productos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Firebase",
+					"item": [
+						{
+							"name": "Carrito - Firebase - Add product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"teclado\",\r\n    \"description\": \"inalambrico\",\r\n    \"code\": 111,\r\n    \"price\": 456,\r\n    \"stock\": 79,\r\n    \"thumbnail\": \"\",\r\n    \"timestamp\": 1657778570656,\r\n    \"id\": \"kVBUJsl6tcqRliwoHhsD\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/carrito/0whNb75pLkHHBFObHm2y/productos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"0whNb75pLkHHBFObHm2y",
+										"productos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Carrito - Firebase -Crear Carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productos\": [\r\n        {\r\n            \"_id\": \"62d0a59f972bd36dbb4b92ff\",\r\n            \"name\": \"Nuevo producto\",\r\n            \"description\": \"super nuevo\",\r\n            \"code\": 3142,\r\n            \"price\": 200,\r\n            \"stock\": 34,\r\n            \"thumbnail\": \"\",\r\n            \"timestamp\": 1657841055561\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Carrito - Firebase -Crear Carrito vacio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Carrito - Firebase - Delete producto de un carrito",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/carrito/62d2f98747aebb921bf4387f/productos/62d2ddeb800594059d77b151",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"62d2f98747aebb921bf4387f",
+										"productos",
+										"62d2ddeb800594059d77b151"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "File",
+					"item": [
+						{
+							"name": "Carrito - File - Crear Carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productos\": [\r\n        {\r\n            \"name\": \"test\",\r\n            \"description\": \"DATO A ACTUALIZAR!\",\r\n            \"code\": 12,\r\n            \"price\": \"4200\",\r\n            \"stock\": 8,\r\n            \"thumbnail\": \"\",\r\n            \"timestamp\": 1656891035531,\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Carrito -File - Listar un carrito",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/carrito/9/productos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"9",
+										"productos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Carrito - Listar un carrito",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/carrito/9/productos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"9",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Carrito - Crear Carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productos\": [\r\n        {\r\n            \"_id\": \"62d0a59f972bd36dbb4b92ff\",\r\n            \"name\": \"Nuevo producto\",\r\n            \"description\": \"super nuevo\",\r\n            \"code\": 3142,\r\n            \"price\": 200,\r\n            \"stock\": 34,\r\n            \"thumbnail\": \"\",\r\n            \"timestamp\": 1657841055561\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/carrito",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Carrito - Delete Carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/carrito/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Carrito - Add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Taza\",\r\n    \"description\": \"cada uno a su casa\",\r\n    \"code\": 142,\r\n    \"price\": 40,\r\n    \"stock\": 4,\r\n    \"thumbnail\": \"\",\r\n    \"timestamp\": 1657024839475,\r\n    \"id\": 276\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/carrito/10/productos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"10",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Carrito - Delete producto de un carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/carrito/10/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"10",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

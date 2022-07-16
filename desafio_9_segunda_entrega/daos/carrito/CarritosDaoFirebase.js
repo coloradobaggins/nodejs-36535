@@ -53,22 +53,26 @@ class CarritosDaoFirebase extends ContenedorFirebase{
 
     }
 
-
+    /**
+     * Firestore al agregar producto y carrito crea un id string para cada uno.
+     * Para eliminar los necesitamos aca.
+     * @param {String} cartId 
+     * @param {String} prodId 
+     * @returns 
+     */
     async deleteProdFromCart(cartId, prodId){
 
         let prodRemoved = false;
 
-        let parsedProdId = parseInt(prodId);
-
         let cart = await this.getById(cartId);
         let cartProds = cart.productos;
 
-        let prodIdExists = cartProds.some(p=> p.id === parsedProdId);
+        let prodIdExists = cartProds.some(p=> p.id === prodId);
 
         if(prodIdExists){
 
             //Buscar el indice a eliminar
-            var indexToRemove = cartProds.map(p=> p.id).indexOf(parsedProdId);
+            var indexToRemove = cartProds.map(p=> p.id).indexOf(prodId);
             
             cartProds.splice(indexToRemove, 1);
             

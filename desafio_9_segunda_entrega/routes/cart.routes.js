@@ -8,6 +8,8 @@ const { getShoppingCart,
 
 const router = Router();
 
+// - /api/carrito/
+
 router.post('/', postShoppingCart);             //Crea un carrito, devuelve su id
 router.delete('/:id', deleteShoppingCart);      //Vacio un carrito y lo elimina
 router.get('/:id/productos', getShoppingCart);  //Listar productos de un carrito

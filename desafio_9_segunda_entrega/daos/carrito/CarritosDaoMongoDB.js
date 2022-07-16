@@ -1,11 +1,11 @@
 const ContenedorMongoDB = require('../../contenedores/ContenedorMongoDB');
-const carritoModel = require('../../models/Carrito');
+const { Carrito } = require('../../models');
 
 
 class CarritosDaoMongoDB extends ContenedorMongoDB{
 
     constructor(){
-        super(carritoModel);
+        super(Carrito);
     }
 
     async createCart(cartObj){
@@ -15,6 +15,8 @@ class CarritosDaoMongoDB extends ContenedorMongoDB{
         if(!cartObj.hasOwnProperty('productos')){
             cartObj.productos = [];
         }
+
+        console.log(cartObj);
 
         return await this.save(cartObj);
 
@@ -28,12 +30,13 @@ class CarritosDaoMongoDB extends ContenedorMongoDB{
 
     async getProdsFromCart(cartId){
 
+        
         return await this.getById(cartId);
 
     }
 
     /**
-     * Recibe 1 objeto literal y pushea a array productos del carrito elegido por su cartId
+     * Recibe un objeto literal con el ObjectId correspondiente a un producto y pushea a array productos del carrito elegido por su cartId
      * 
      * @param {String} cartId (ObjectId)
      * @param {*} prods 
@@ -43,7 +46,7 @@ class CarritosDaoMongoDB extends ContenedorMongoDB{
 
         try{
 
-            let updated = await carritoModel.findOneAndUpdate(
+            let updated = await Carrito.findOneAndUpdate(
                 { _id: cartId }, 
                 { $push: {productos: prods} },
                 { new: true });
@@ -57,19 +60,22 @@ class CarritosDaoMongoDB extends ContenedorMongoDB{
     }
 
     /**
-     * Elimina 1 producto por su id de un carrito elegido por su id
+     * Elimina un producto por su ObjectId
      * 
      * @param {String} cartId (ObjectId)
      * @param {*} prodId 
      * @returns 
      */
     async deleteProdFromCart(cartId, prodId){
+        
+        console.log(`CartId: ${cartId}, prodId: ${prodId}`);
 
         try{
             
-            let updated = await carritoModel.updateOne(
+            let updated = await Carrito.findOneAndUpdate(
                 {_id: cartId }, {
-                    $pull: {productos: {id: prodId}}
+                    //$pull: {productos: {_id: prodId}} 
+                    $pullAll: {productos: [prodId]} //Por su ObjectId en este array
                 },
                 { new: true });
 

@@ -47,52 +47,6 @@
     "id": 4
   },
   {
-    "timestamp": 1656989693128,
-    "productos": [
-      {
-        "name": "Auriculares kl8",
-        "description": "Auriculares inalambricos",
-        "code": 62,
-        "price": "9200",
-        "stock": 4,
-        "thumbnail": "",
-        "timestamp": 1656986068634,
-        "id": 3
-      },
-      {
-        "name": "Teclado Logi k600",
-        "description": "Inalambrico, bluethooth",
-        "code": 142,
-        "price": "7200",
-        "stock": 34,
-        "thumbnail": "",
-        "timestamp": 1657024839475,
-        "id": 4
-      },
-      {
-        "name": "Teclado Logi 14",
-        "description": "Inalambrico, bluethooth",
-        "code": 142,
-        "price": "7200",
-        "stock": 34,
-        "thumbnail": "",
-        "timestamp": 1657024839475,
-        "id": 14
-      },
-      {
-        "name": "Teclado con id 15",
-        "description": "Este se graba!",
-        "code": 142,
-        "price": "17200",
-        "stock": 34,
-        "thumbnail": "",
-        "timestamp": 1657024839475,
-        "id": 15
-      }
-    ],
-    "id": 5
-  },
-  {
     "productos": [
       {
         "name": "Mate",
@@ -113,9 +67,35 @@
         "thumbnail": "",
         "timestamp": 1657024839475,
         "id": 5
+      },
+      {
+        "name": "Taza",
+        "description": "cada uno a su casa",
+        "code": 142,
+        "price": 40,
+        "stock": 4,
+        "thumbnail": "",
+        "timestamp": 1657024839475,
+        "id": 276
       }
     ],
     "timestamp": 1657809249694,
     "id": 9
+  },
+  {
+    "productos": [
+      {
+        "name": "Taza",
+        "description": "cada uno a su casa",
+        "code": 142,
+        "price": 40,
+        "stock": 4,
+        "thumbnail": "",
+        "timestamp": 1657024839475,
+        "id": 276
+      }
+    ],
+    "timestamp": 1658010042935,
+    "id": 10
   }
 ]

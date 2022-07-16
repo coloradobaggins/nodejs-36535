@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 require('../database/connectionMongoDB');
 
 class ContenedorMongoDB{
@@ -6,7 +7,16 @@ class ContenedorMongoDB{
         this.model = model;
     }
 
+    /**
+     * Recibe json vacio ( {} ), json con array prodcutos (con o sin prods.)
+     * Si envio el [] productos, deben ser ObjectId, definido por el modelo.
+     * 
+     * 
+     * @param {obj} objData 
+     * @returns 
+     */
     async save(objData){
+
         try{
 
             let added = await this.model.create(objData);
@@ -19,6 +29,12 @@ class ContenedorMongoDB{
     }
 
     async update(id, objData){
+
+        if(!mongoose.isValidObjectId(id)){
+
+            return `invalid (ObjectId)`;
+
+        }
 
         try{
 
@@ -35,10 +51,18 @@ class ContenedorMongoDB{
 
     async getById(id){
 
-        try{
+        if(!mongoose.isValidObjectId(id)){
 
-            return await this.model.findOne({_id: id});
-            
+            return `invalid (ObjectId)`;
+
+        }
+
+        try{
+             
+            //return await this.model.findOne({_id: id});
+
+            return await this.model.findOne({_id: id}).populate('productos');
+           
         }catch(err){
             console.log(err);
         }
@@ -46,6 +70,12 @@ class ContenedorMongoDB{
     }
 
     async deleteById(id){
+
+        if(!mongoose.isValidObjectId(id)){
+
+            return `invalid (ObjectId)`;
+
+        }
 
         try{
 

@@ -1,23 +1,6 @@
+const {ProductDao} = require('../daos/daoSelector')
 
-const dbEngine = process.env.DB_ENGINE || 'FILE';
-console.log(`el engine eegido es: ${process.env.DB_ENGINE}`);
-
-let objProductDao;
-
-if(dbEngine === 'FILE'){
-    const ProductosDaoArchivos = require('../daos/productos/ProductosDaoArchivos');
-    objProductDao = new ProductosDaoArchivos();
-}else if(dbEngine === 'MONGODB'){
-
-    const ProductosDaoMongoDB = require('../daos/productos/ProductosDaoMongoDB');
-    objProductDao = new ProductosDaoMongoDB();
-}else if(dbEngine === 'FIREBASE'){
-
-    const ProductosDaoFirebase = require('../daos/productos/ProductosDaoFirebase');
-    objProductDao = new ProductosDaoFirebase();
-
-}
-
+let objProductDao = ProductDao;
 
 
 const productsGet = async (req, res)=>{

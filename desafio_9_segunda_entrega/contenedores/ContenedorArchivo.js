@@ -65,7 +65,6 @@ module.exports = class ContenedorArchivo{
 
     async update(id, objForUpdate){
 
-        console.log(`update.. id: ${id}, obj:`);
 
         if(isNaN(id))
             throw `id tiene que ser un numero`;
@@ -108,7 +107,7 @@ module.exports = class ContenedorArchivo{
 
                 let fileData = await this.getAll();
     
-                return fileData.find((p)=> p.id===parseInt(id)) ?? null;
+                return fileData.find((p)=> p.id===id) ?? null;
     
             }catch(err){
                 console.log(err);
@@ -129,6 +128,8 @@ module.exports = class ContenedorArchivo{
      * @returns 
      */
     async deleteById(id){
+
+        console.log(`delete id: ${id}`);
 
         if(await this.getById(id)==null)    //Check product id antes de borrar, si existe.
             return null;

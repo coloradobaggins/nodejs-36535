@@ -18,7 +18,7 @@ class ProductosDaoArchivos extends ContenedorArchivo{
 
     async getProductById(id){
 
-        return await this.getById(id);
+        return await this.getById(parseInt(id));
 
     }
 
@@ -30,13 +30,13 @@ class ProductosDaoArchivos extends ContenedorArchivo{
 
     async updateProduct(prodId, prod){
 
-        await this.update(prodId, prod);
+        await this.update(parseInt(prodId), prod);
 
     }
 
     async deleteProduct(id){
 
-        await this.deleteById(id);
+        await this.deleteById(parseInt(id));
 
     }
 

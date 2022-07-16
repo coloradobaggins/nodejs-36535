@@ -1,21 +1,6 @@
-const dbEngine = process.env.DB_ENGINE || 'FILE';
-console.log(`el engine eegido es: ${process.env.DB_ENGINE}`);
+const {CartDao} = require('../daos/daoSelector');
 
-let objCartDao;
-
-if(dbEngine === 'FILE'){
-    const CarritosDaoArchivos = require('../daos/carrito/CarritosDaoArchivos');
-    objCartDao = new CarritosDaoArchivos();
-}else if(dbEngine === 'MONGODB'){
-
-    const CarritosDaoMongoDB = require('../daos/carrito/CarritosDaoMongoDB');
-    objCartDao = new CarritosDaoMongoDB();
-}else if(dbEngine === 'FIREBASE'){
-
-    const CarritosDaoFirebase = require('../daos/carrito/CarritosDaoFirebase');
-    objCartDao = new CarritosDaoFirebase();
-
-}
+let objCartDao = CartDao;
 
 
 // 1- Crea un carrito y devuelve su id
@@ -26,7 +11,6 @@ const postShoppingCart = async (req, res)=>{
     try{
 
         newCart = await objCartDao.createCart(req.body);
-
 
     }catch(err){
 
@@ -64,8 +48,6 @@ const getShoppingCart = async (req, res)=>{
     
     let cartId = req.params.id;
 
-    console.log(`Estamos aca, id: ${cartId}`);
-
     let prodsCarrito = [];
     
     try{
@@ -75,7 +57,10 @@ const getShoppingCart = async (req, res)=>{
        
     }catch(err){
         console.log(err);
-        res.status(400).json({error: 'not ok'});
+        res.status(400).json({
+            error: 'not ok',
+            message: err
+        });
     }
 
     res.json({

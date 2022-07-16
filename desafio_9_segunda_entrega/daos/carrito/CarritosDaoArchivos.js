@@ -45,17 +45,19 @@ class CarritosDaoArchivos extends ContenedorArchivo{
 
     async getProdsFromCart(id){
 
-        return await this.getById(id);
+        return await this.getById(parseInt(id));
         
     }
 
     async deleteCartById(id){
 
-        await this.deleteById(id);
+        await this.deleteById(parseInt(id));
 
     }
 
     async addProdsToCart(cartId, prods){
+
+        cartId = parseInt(cartId);
 
         const cart = await this.getById(cartId);
 
@@ -96,6 +98,8 @@ class CarritosDaoArchivos extends ContenedorArchivo{
     }
 
     async deleteProdFromCart(cartId, prodId){
+        cartId = parseInt(cartId)
+        prodId = parseInt(prodId);
 
         let prodDeleted = false;
 
