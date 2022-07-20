@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 6</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <link href="./css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Desafio 9 - Normalizacion</h1>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Alta de productos</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="float-end" href="api/productos-test">Productos Random!</a>
+                    </div>
+                </div>
+
+                <div class="product-container">
+
+                    <form id="prod-form" name="prod-form">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Producto</label>
+                            <input type="text" class="form-control" id="title" name="title" required placeholder="Nombre del producto">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Precio</label>
+                            <input type="number" class="form-control" id="price" name="price" required placeholder="Precio">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="thumbnail" class="form-label">Thumbnail</label>
+                            <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="url thumbnail">
+                        </div>
+                        
+                        <button id="sendBtn" type="submit" class="btn btn-success">Ingresar</button>
+                    </form>
+
+                </div>
+
+                <div class="prod-table mt-3">
+                    <!--<table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>title</td>
+                                <td>precio</td>
+                                <td>
+                                    <img class="img-fluid" style="width: 50px;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>-->
+                </div>
+                
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="chat-container">
+
+                    <h2>Centro de Mensajes</h2>
+                    <p>Estado: <span id="server_status" class="text-success">online</span></p>
+                    
+                    <div>
+                        <form id="msg-form">
+
+                            <div class="mb-3">
+                                <label for="nickname" class="form-label">Alias</label>
+                                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Alias">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastname" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellido">
+                            </div>
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Edad</label>
+                                <input type="number" class="form-control" id="age" name="age" placeholder="Edad">
+                            </div>
+                            <div class="mb-3">
+                                <label for="avatar" class="form-label">Avatar</label>
+                                <input type="text" class="form-control" id="avatar" name="avatar" placeholder="Avatar url">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="comments" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">Comments</label>
+                            </div>
+
+                            <button id="sendMsg" type="submit" class="btn btn-success">Enviar</button>
+                        </form>
+                        <div class="msgs-container">
+                            <!--<p><span class="msg-mail">baggins@gmail.com</span> <span class="msg-date">[30/6/2022, 16:26:10]</span>: <span class="msg-body">Hola!</span></p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+.msg-container{
+    height: 60px;
+}
+.msg-content{
+    max-width: 70%;
+    float: left;
+}
+.msg-mail{
+    color: blue;
+}
+.msg-date{
+    color:red;
+}
+.msg-body{
+    color:green;
+    font-weight:500;
+}
+
+.avatar-container{
+    max-width: 40%;
+    float: right;
+}
+
+.avatar-container .img-avatar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-position: 50% 50%;
+    background-size: cover;
+    border-radius: 50%;
+  }

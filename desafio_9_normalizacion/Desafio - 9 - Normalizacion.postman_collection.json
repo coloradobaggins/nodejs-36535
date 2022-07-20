@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "b861641c-de89-4ec6-98d5-be39b83b333f",
+		"name": "Desafio - 9 - Normalizacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20973496"
+	},
+	"item": [
+		{
+			"name": "Productos Random Faker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/productos-test/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos-test",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
