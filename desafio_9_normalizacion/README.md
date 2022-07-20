@@ -7,3 +7,6 @@ Mensajeria funciona a traves de sockets. Se normalizan los mensajes con normaliz
 
 ## Generacion productos random con Faker:
 /api/productos-test/
+
+## Instalar paquetes  
+npm install
