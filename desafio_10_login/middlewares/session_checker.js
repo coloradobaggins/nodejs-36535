@@ -14,4 +14,16 @@ const sessionChecker = (req, res, next)=>{
 
 }
 
-module.exports = {sessionChecker};
+//Todas las rutas de productos funcionan al reves.
+//Usar este para productos, el anteior para login.
+const productsSessionChecker = (req, res, next)=>{
+
+    if(req.session.user){
+        next();
+    }else{
+        res.redirect('/login')
+    }
+
+}
+
+module.exports = {sessionChecker, productsSessionChecker};

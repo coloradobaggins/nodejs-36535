@@ -13,6 +13,8 @@ class Server{
         this.PORT = process.env.PORT || 8080;
         this.app = express();
 
+        this.productsRoutes = '/api/productos';
+
         this.connectDB();
         
         this.middlewares();
@@ -48,7 +50,7 @@ class Server{
             secret: 'se-cre-to',
             resave: true,
             saveUninitialized: false,
-            cookie: {maxAge: 120000}
+            cookie: {maxAge: 920000}
             
         }));
 
@@ -58,6 +60,7 @@ class Server{
 
         this.app.use('/', require('../routes/login.routes'));
         this.app.use('/dashboard', require('../routes/dashboard.routes'));
+        this.app.use(this.productsRoutes, require('../routes/products.routes'))
     }
 
     listen(){

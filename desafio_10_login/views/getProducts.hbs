@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 10</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="./css/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Desafìo 10</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="nav navbar-nav">
+                            <li><a>Bienvenido {{userLoggedIn}}</a></li>
+                            <li><a href="/">Home</a></li>
+                        </ul>
+                    </ul>
+
+                    <ul class="nav navbar-nav float-end">
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a>Bienvenido {{userLoggedIn}}</a></li>
+                        <li><a href="/">Home</a></li>
+                    </ul>
+ 
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+ 
+        <div class="container row">
+           <h2>Hola {{userLoggedIn}}</h2>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <a href="/dashboard">Volver</a>
+
+        <div class="products-container">
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    <h2>Tabla de productos</h2>
+
+                    {{#if prods}}
+
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Foto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {{#each prods}}
+                                    <tr>
+                                        <td>{{this.name}}</td>
+                                        <td>{{this.description}}</td>
+                                        <td>{{this.code}}</td>
+                                        <td>$ {{this.price}}</td>
+                                        <td>$ {{this.stock}}</td>
+                                        <td>
+                                            {{#if this.thumbnail}}
+                                                <img class="img-fluid" style="max-width: 20%;" src="{{this.thumbnail}}" alt="imagen de producto">
+                                            {{else}}
+                                                <img class="img-fluid" style="max-width: 20%;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                                
+                            </tbody>
+                        </table>
+
+                    {{else}}
+                        <div class="alert alert-warning">Sin productos</div>
+                    {{/if}}
+
+                </div>
+            </div>
+
+        </div><!-- /. products-container -->
+
+        
+        
+    </div>
+
+    
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
