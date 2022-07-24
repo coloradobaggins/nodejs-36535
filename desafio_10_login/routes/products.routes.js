@@ -25,9 +25,9 @@ const isAdmin = (req, res, next)=>{
 }
 
 router.get('/:id?', productsSessionChecker, productsGet);
-router.post('/', isAdmin, productsPost);
-router.put('/:id', isAdmin, productUpdate);
-router.delete('/:id', isAdmin, productDelete);
+router.post('/', [productsSessionChecker, isAdmin], productsPost);
+router.put('/:id', [productsSessionChecker, isAdmin], productUpdate);
+router.delete('/:id', [productsSessionChecker, isAdmin], productDelete);
 
 
 module.exports = router;
