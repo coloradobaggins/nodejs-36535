@@ -1,5 +1,7 @@
 const { Router } = require('express');
-const { productsSessionChecker } = require('../middlewares/session_checker');
+const {checkAuthentication} = require('../middlewares/checkAuthentication');
+
+//const { productsSessionChecker } = require('../middlewares/session_checker');
 
 const { productsGet, 
         productsPost,
@@ -24,10 +26,10 @@ const isAdmin = (req, res, next)=>{
     }
 }
 
-router.get('/:id?', productsSessionChecker, productsGet);
-router.post('/', [productsSessionChecker, isAdmin], productsPost);
-router.put('/:id', [productsSessionChecker, isAdmin], productUpdate);
-router.delete('/:id', [productsSessionChecker, isAdmin], productDelete);
+router.get('/:id?', checkAuthentication, productsGet);
+router.post('/', [checkAuthentication, isAdmin], productsPost);
+router.put('/:id', [checkAuthentication, isAdmin], productUpdate);
+router.delete('/:id', [checkAuthentication, isAdmin], productDelete);
 
 
 module.exports = router;

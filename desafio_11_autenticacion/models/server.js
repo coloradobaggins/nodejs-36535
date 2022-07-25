@@ -39,9 +39,9 @@ class Server{
                 mongoUrl: process.env.MONGODB_CNN,
                 mongoOptions: advancedOptions
             }),
-            //key: 'user_sid',
+            key: 'user_sid',
             secret: 'se-cre-to',
-            resave: true,
+            resave: false,
             saveUninitialized: false,
             cookie: {maxAge: 920000}
             

@@ -39,13 +39,12 @@ const productsGet = async (req, res)=>{
     }
     
 
-    res.render('getProducts', { prods, userLoggedIn: req.session.user.username });
+    res.render('getProducts', { 
+        prods, 
+        userLoggedIn: req.user.username,
+        userEmailLoggedIn: req.user.email 
+    });
 
-    /*
-    res.json({
-        prods
-    })
-    */
 
 }
 
