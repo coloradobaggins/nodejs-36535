@@ -14,10 +14,6 @@ class Server{
 
         const args = yargs.argv;
 
-        console.log(`yags:`);
-        console.log(args);
-        console.log(args.p);
-
         //this.PORT = process.env.PORT || 8080;
         this.PORT = args.p || 8080; // (node app -p portNumber)
 
