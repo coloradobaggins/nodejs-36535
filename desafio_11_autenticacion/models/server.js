@@ -43,7 +43,7 @@ class Server{
             secret: 'se-cre-to',
             resave: false,
             saveUninitialized: false,
-            cookie: {maxAge: 920000}
+            cookie: {maxAge: 600000}
             
         }));
                 
@@ -51,7 +51,7 @@ class Server{
         this.app.use(cookieParser());
         this.app.use(express.urlencoded({extended: true}));
         this.app.use(express.static('public'));
-        initializePassport();   //Ejecutar config de passport initialize y session()
+        initializePassport();                   //Ejecutar config de passport initialize y session()
         this.app.use(passport.initialize());    //Usamos passport
         this.app.use(passport.session());       //Ambas llamadas son necesarias para passsport
 
