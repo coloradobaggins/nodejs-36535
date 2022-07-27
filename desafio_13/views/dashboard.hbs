@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 12 - Process</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+</head>
+<body>
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{> navbar}}
+        </nav>
+ 
+        <div class="container row">
+           <h2>Hola {{userLoggedIn}}</h2>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Alta de productos</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="float-end" href="/api/productos">Ver productos</a>
+                    </div>
+                </div>
+
+                <div class="product-container">
+
+                    <form id="prod-form" name="prod-form">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Producto</label>
+                            <input type="text" class="form-control" id="title" name="title" required placeholder="Nombre del producto">
+                        </div>
+
+                        <div class="form-floating mb-3">
+                                <textarea class="form-control" name="desc" placeholder="Descripcion" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">Descripcion</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="code" class="form-label">Codigo</label>
+                            <input type="number" class="form-control" id="code" name="code" placeholder="Codigo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Precio</label>
+                            <input type="number" class="form-control" id="price" name="price" placeholder="Precio">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="stock" name="stock" placeholder="Precio">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="thumbnail" class="form-label">Thumbnail</label>
+                            <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="url thumbnail">
+                        </div>
+                        
+                        <button id="sendBtn" type="submit" class="btn btn-success">Ingresar</button>
+                    </form>
+
+                </div>
+
+                <div class="prod-table mt-3">
+                    <!--<table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>title</td>
+                                <td>precio</td>
+                                <td>
+                                    <img class="img-fluid" style="width: 50px;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>-->
+                </div>
+                
+
+            </div>
+
+
+        </div>
+    </div>
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="./js/dashboard.js"></script>
+
+</body>
+</html>
