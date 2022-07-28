@@ -1,4 +1,5 @@
 # Desafio 13 - Servidor con balance de carga  
+## Proxy & NGINX  
 
 Express + Passport + Bcrypt + MongoDB + Yargs + process + Fork/cluster + NGINX (Load balancer)  
 
