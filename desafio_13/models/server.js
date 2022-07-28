@@ -20,6 +20,9 @@ class Server{
         //this.PORT = process.env.PORT || 8080;
         this.PORT = args.p || 8080; // (node app --p portNumber)
 
+        console.log(`PORT: ${this.PORT}`);
+        console.log(`args.p: ${args.p}`);
+
         this.app = express();
 
         this.productsRoutes = '/api/productos';

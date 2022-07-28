@@ -5,6 +5,7 @@ const getInfo = (req, res)=>{
     
     console.log(process.argv.slice(2));
 
+    
     const dataObj = {
         argv: process.argv.slice(2),
         platform: process.platform,
@@ -15,6 +16,8 @@ const getInfo = (req, res)=>{
         actualDir: process.cwd(),
         numCpus
     }
+
+    console.log(dataObj.argv);
 
     res.render('info', {
         userLoggedIn: req.user.username,
