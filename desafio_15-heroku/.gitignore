@@ -1,0 +1,5 @@
+#Ignora node_modules
+node_modules
+
+#Ignora archivos relacionados a api keys
+.env
