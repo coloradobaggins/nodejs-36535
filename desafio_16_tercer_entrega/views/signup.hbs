@@ -1,0 +1,89 @@
+<html>
+    <head>
+        {{> header }}
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    </head>
+
+
+    <body class="container">
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{> navbar }}
+        </nav>
+
+        <div class="page-header">
+            <h2>Registro de usuario</h2>
+        </div>
+        <!--
+        <div class="container">
+
+            <form id="login" onsubmit="process(event)">
+                <p>Enter your phone number:</p>
+                <input id="phone" type="tel" name="phone" />
+                <input type="submit" class="btn" value="Verify" />
+            </form>
+
+            <div class="alert alert-info" style="display: none;"></div>
+            
+        </div>
+        -->
+
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <form action="/signup" method="post">
+
+                    <div class="mb-3">
+                            <label>Nombre usuario:</label>
+                            <input class="form-control" required type="text" name="username"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Nombre:</label>
+                            <input class="form-control" required type="text" name="name"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Email:</label>
+                            <input class="form-control" required type="email" name="email"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Edad:</label>
+                            <input class="form-control" type="number" name="age"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Dirección:</label>
+                            <input class="form-control" type="text" name="address"/>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Teléfono:</label>
+                            <input class="form-control" required type="tel" id="phone" name="phone"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Password:</label>
+                            <input class="form-control" required type="password" name="password"/>
+                        </div>
+
+                        <input class="btn btn-primary" type="submit" value="Registrarse"/>
+
+                    </form>
+
+            </div>
+
+        </div>
+
+    <script src="./js/signup.js"></script>
+
+    </body>
+</html>
