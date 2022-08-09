@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    {{> header}}
+    
+</head>
+<body>
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{> navbar }}
+        </nav>
+
+ 
+        <div class="container row">
+           <h2>Hola {{userLoggedIn}}</h2>
+           <h3>Info</h3>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                
+                <div>
+                    <ul>
+                        <li>Nombre: {{userProfileData.name}}</li>
+                        <li>Email: {{userProfileData.email}}</li>
+                        <li>Telefono: {{userProfileData.phone}}</li>
+                        <li>Edad: {{userProfileData.age}}</li>
+                        <li>Direccion: {{userProfileData.address}}</li>
+                    </ul>
+
+                </div>
+                
+                <div>
+
+                    FOTO DE PERFIL:
+
+                </div>
+
+                
+
+            </div>
+
+
+        </div>
+    </div>
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>

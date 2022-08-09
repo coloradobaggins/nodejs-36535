@@ -26,6 +26,10 @@ const UserSchema = Schema({
     phone:{
         type: Number
     },
+    cart:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    }],
     date: {
         type: Date,
         default: new Date()

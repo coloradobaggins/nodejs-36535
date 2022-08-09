@@ -15,6 +15,7 @@ const productsGet = async (req, res)=>{
 
     prods = await objProduct.getAll();
 
+    console.log(prods);
     
     if(id === null){
 

@@ -1,0 +1,38 @@
+
+<div class="container-fluid">
+    <a class="navbar-brand" href="/">Desafio 16</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        {{#if userEmailLoggedIn}}
+            
+            <ul class="nav navbar-nav">
+                    <li><a>Bienvenido {{userEmailLoggedIn}}</a></li>
+                </ul>
+            </ul>
+            <ul class="nav navbar-nav float-end">
+                <li><a class="btn" href="/">Home</a></li>
+                <li><a class="btn" href="/info">Info</a></li>
+                <li><a class="btn" href="/api/randoms?cant=400">APi Randoms</a></li>
+                <li><a class="btn" href="/logout">Log Out</a></li>
+            </ul>
+
+        {{else}}
+
+            <ul class="nav navbar-nav">
+                    <li><a>Bienvenido!</a></li>
+                </ul>
+            </ul>
+            <ul class="nav navbar-nav float-end">
+                <li><a class="btn" href="/">Home</a></li>
+                <li><a class="btn" href="/login">Login</a></li>
+                <li><a class="btn" href="/signup">Registrarse</a></li>
+            </ul>
+
+        {{/if}}
+
+    </div>
+</div>

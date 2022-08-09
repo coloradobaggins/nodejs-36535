@@ -28,6 +28,7 @@ class Server{
         this.app = express();
 
         this.productsRoutes = '/api/productos';
+        this.cartRoutes = 'api/carrito';
 
         this.connectDB();
 
@@ -93,6 +94,10 @@ class Server{
         this.app.use(this.productsRoutes, require('../routes/products.routes'));
         this.app.use('/info', require('../routes/info.routes'));
         this.app.use('/api/randoms', require('../routes/randoms.routes'));
+        this.app.use('/profile', require('../routes/profile.routes'));
+
+        //Cart Routes
+        this.app.use(this.cartRoutes, require('../routes/cart.routes'));
 
         this.app.use('*', require('../routes/notfound.routes'));
     }
