@@ -13,4 +13,4 @@ o tambien:
 
 npm start
 
-Tomamos el entregable 14 y separamos en capas la arquitectura. (Se agrega carpa servicios)
+Tomamos el entregable 14 y separamos en capas la arquitectura. (Se agrega capa servicios)
