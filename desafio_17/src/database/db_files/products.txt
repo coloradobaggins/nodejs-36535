@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Mouse actualizado 2",
+    "description": "viejo",
+    "code": 1,
+    "price": 2345,
+    "stock": 104,
+    "thumbnail": "",
+    "id": 2
+  },
+  {
+    "name": "auris actualizados",
+    "description": "logiteeech",
+    "code": 1,
+    "price": 2345,
+    "stock": 104,
+    "thumbnail": "",
+    "id": 3
+  }
+]

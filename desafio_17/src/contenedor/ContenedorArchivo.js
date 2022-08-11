@@ -18,7 +18,7 @@ module.exports = class ContenedorArchivo{
      * 
      * @param {obj} obj 
      */
-    async save(obj){        
+    async save(obj){    
         
         if(await this.__checkFileEmpty()){
             this.__writeFile();                                                         //Si esta completamente vacio, escribo los [] - Evito error de json.
@@ -65,7 +65,6 @@ module.exports = class ContenedorArchivo{
 
     async update(id, objForUpdate){
 
-
         if(isNaN(id))
             throw `id tiene que ser un numero`;
 
@@ -102,12 +101,14 @@ module.exports = class ContenedorArchivo{
      */
     async getById(id){
         
-        if(!isNaN(id)){
+        let parsedId = parseInt(id);
+
+        if(!isNaN(parsedId)){
             try{
 
                 let fileData = await this.getAll();
     
-                return fileData.find((p)=> p.id===id) ?? null;
+                return fileData.find((p)=> p.id===parsedId) ?? null;
     
             }catch(err){
                 console.log(err);
@@ -129,18 +130,22 @@ module.exports = class ContenedorArchivo{
      */
     async deleteById(id){
 
+        let parsedId = parseInt(id);
+
         console.log(`delete id: ${id}`);
 
-        if(await this.getById(id)==null)    //Check product id antes de borrar, si existe.
+        if(await this.getById(parsedId)==null)    //Check product id antes de borrar, si existe.
             return null;
         
         try{
 
             let theFile = await this.getAll();
 
-            let filteredObj = theFile.filter((p)=>p.id !==id);
+            let filteredObj = theFile.filter((p)=>p.id !==parsedId);
 
             this.__writeFile(JSON.stringify(filteredObj, null, 2));
+
+            return true;
 
         }catch(err){
             
@@ -190,28 +195,6 @@ module.exports = class ContenedorArchivo{
 
     }
 
-    /*
-    async getProdsFromCart(idCarro){
-
-        try{
-
-            const allItems = await this.getAll();
-            const filteredById = await this.getById(idCarro);
-
-            console.log(filteredById);
-            console.log('********');
-            console.log(filteredById.productos);
-
-
-            return filteredById.productos;
-
-        }catch(err){
-            throw `Error${err}`;
-        }
-        
-
-    }
-    */
 
     async __readFile(){
 
