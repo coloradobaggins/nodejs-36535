@@ -1,24 +1,51 @@
-const ProductDaoMongo = require('../daos/products/ProductsDaoMongo');
+//const ProductsDaoMongo = require('../daos/products/ProductsDaoMongo');
+const PersistenceFactory = require('../daos/products/PersistenceFactory');
 
-//Al tener varios daos, varias fuentes de info, se ve la utilidad de usar este servicio.
+
+// ** Al tener varios daos, varias fuentes de info, se ve la utilidad de usar este servicio.
 
 class ProductService{
 
     constructor(){
 
-        this.productDao = new ProductDaoMongo();
+        //this.productDao = new ProductsDaoMongo();
+        this.productDao;
+        this.init();
+    }
+
+    init = async()=>{
+
+        this.productDao = await PersistenceFactory.getPersistence();
 
     }
 
     getProducts = async() =>{
 
-        return this.productDao.getAllProducts();
+        return await this.productDao.getAll();
+
+    }
+
+    getProductById = async(id) =>{
+
+        return await this.productDao.getById(id)
 
     }
 
     addProduct = async(prod) =>{
 
-        this.productDao.saveProduct(prod)
+        return await this.productDao.save(prod);
+
+    }
+
+    updateProduct = async(id, objData) =>{
+
+        return await this.productDao.update(id, objData);
+
+    }
+
+    deleteProduct = async(id) =>{
+
+        return await this.productDao.deleteById(id);
 
     }
 
