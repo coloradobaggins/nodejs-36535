@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { assert } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app.js');
@@ -57,18 +58,38 @@ describe('GET products/', () => {
 });
 
 
-describe('POST products', () => {
+describe('POST - Insertar nuevo producto', () => {
 
     it('Deberia agregar un nuevo producto', () =>{
 
         chai.request(SERVER_URL)
             .post('/products')
+            .send(testProd)
             .end((err, response) => {
 
+                response.should.have.status(201);
+                response.body.should.be.a('object');
+                response.body.should.have.property('msg');
                 
+                //console.log(`cantProds: ${cantProds}, resLength: ${response.body.length}`);
+                
+                cantProds++;
 
             }); 
 
-    }); 
+    });
+    
+    it('Deberia haber incrementado en uno el largo del array de productos', () => {
+
+        chai.request(SERVER_URL)
+            .get('/products')
+            .end((err, response) => {
+                
+                response.should.have.status(200);
+                assert.strictEqual(response.body.length, cantProds);
+
+            });
+
+    });
 
 });

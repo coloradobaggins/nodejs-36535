@@ -22,7 +22,7 @@ const saveProduct = async (req, res)=>{
 
     let result = await productService.addProduct(product);    
 
-    res.json({msg: result});
+    res.status(201).json({msg: result});
 
 }
 
