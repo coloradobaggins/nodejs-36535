@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "f6957140-7cfd-47a1-a9d1-0663abd1a2bd",
+		"name": "Desafio 17",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20973496"
+	},
+	"item": [
+		{
+			"name": "FILE",
+			"item": [
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"auris actualizados\",\r\n    \"description\": \"logiteeech\",\r\n    \"code\": 1,\r\n    \"price\": 2345,\r\n    \"stock\": 104,\r\n    \"thumbnail\": \"\",\r\n    \"id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Prod",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MONGODB",
+			"item": [
+				{
+					"name": "Delete prod",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/62f450c7496e27ccc8ce74b9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"62f450c7496e27ccc8ce74b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update prod",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"PELOTA ACTUALIZADA 2\",\r\n    \"description\": \"DE FUTBOL\",\r\n    \"price\": 23,\r\n    \"thumbnail\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/62f47c8a49d2dc39459b4d44",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"62f47c8a49d2dc39459b4d44"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"PELOTA\",\r\n    \"description\": \"DE FUTBOL\",\r\n    \"code\": 12,\r\n    \"price\": 23,\r\n    \"stock\": 4,\r\n    \"thumbnail\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
