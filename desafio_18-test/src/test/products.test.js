@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { assert } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
