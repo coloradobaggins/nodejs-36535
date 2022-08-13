@@ -11,7 +11,6 @@ const getProducts = async(req, res)=>{
 
     let resultDTO = result.map(prod => new ProductDTO(prod));   //Antes de enviar la response, pasar por la capa DTO
 
-    //res.send(result);
     res.status(200).send(resultDTO);
 
 }

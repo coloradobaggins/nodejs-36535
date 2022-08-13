@@ -12,7 +12,7 @@ class ContenedorMongoDB{
         try{
 
             let added = await this.model.create(objData);
-            console.log(added);
+            //console.log(added);
             return added;
 
         }catch(err){
