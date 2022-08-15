@@ -4,18 +4,21 @@
 let products = [];
 let counter = 1;
 
+
 const resolvers = {
     getAllProducts: () => products,
     getProductById: (data) => {
 
+        let parsedId = parseInt(data.id);
+
         for(let i=0; i<products.length; i++) {
-            if(products[i].id === data.id) return products[i];
+            if(products[i].id === parsedId) return products[i];
         }
         return null;
 
     },
     addProduct: (data) =>{
-
+        
         let product = {
             'id': counter,
             'name': data.name,
@@ -24,7 +27,9 @@ const resolvers = {
             'code': data.code,
             'stock': data.stock
         }
+
         products.push(product);
+
         counter++;
         return product;
     },
@@ -37,18 +42,19 @@ const resolvers = {
         console.log(findProduct);
 
         if(findProduct !== undefined){
-
+            
             findProduct.name = data.name;
             findProduct.description = data.description;
             findProduct.price = data.price;
             findProduct.code = data.code;
-            findProduct.stock = data.sock;
+            findProduct.stock = data.stock;
+            
 
             return findProduct;
 
+        }else{
+            throw new Error("Product not found");
         }
-
-        return null;
 
     },
     deleteProduct: ({id})=>{
@@ -58,8 +64,9 @@ const resolvers = {
         
         if(findedIndex !== -1){
             products.splice(findedIndex, 1);
+        }else{
+            throw new Error("Product not found");
         }
-        return null;
         
     },
     deleteAll: ()=>{
