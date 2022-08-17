@@ -78,6 +78,10 @@ const initializePassport = ()=>{
                     if(!user) return done(null, false), {message: "Usuario no existe"};
                     if(!isValidPass(user, password)) return done(null, false, {message: "Contraseña Invalida"})
 
+
+                    console.log(`En login tenemos id de user ahora?.. buscamos cart si lo tneemos`);
+                    
+
                     return done(null, user);
 
                 }catch(err){

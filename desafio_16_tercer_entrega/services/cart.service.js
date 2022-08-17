@@ -4,7 +4,7 @@ class CartService{
 
     constructor(){
 
-        this.cartDao;
+        let objCartDao = this.cartDao;
         this.init();
 
     }
@@ -16,14 +16,39 @@ class CartService{
     }
 
     createCart = async(cartObj)=>{
+        
+        return await this.cartDao.createCart(cartObj);
 
-        this.cartDao = await this.cartDao.createCart(cartObj);
 
     }
 
     addProductToCart = async(cartId, prods) =>{
 
         this.cartDao = await this.cartDao.addProdsToCart(cartId, prods);
+
+    }
+
+    getProductsFromCart = async(cartId) =>{
+
+        return await this.cartDao.getById(cartId);
+
+    }
+
+    /**
+     * 
+     * @param {string} userId 
+     * @returns cartObject || null 
+     */
+    checkCartUserExists = async(userId) =>{
+    
+        let userCartExist = this.cartDao = await this.cartDao.getCartByUserID(userId);
+        console.log(userCartExist);
+        return userCartExist;
+    }
+
+    getCartByUserId = async(userId)=> {
+
+        return await this.cartDao.getCartByUserID(userId);
 
     }
 

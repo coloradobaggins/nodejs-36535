@@ -5,13 +5,17 @@ const objProductService = new ProductService();
 const getShop = async (req, res)=>{
 
     let prods = await objProductService.getProducts();
+    
 
-    let authenticated = req.isAuthenticated();
+    let userLoggedIn = (req.isAuthenticated()) ? req.user.username : undefined;
+    let userEmailLoggedIn = (req.isAuthenticated()) ? req.user.email : undefined;
     
     res.render('shop', {
         prods,
-        authenticated
+        userLoggedIn,
+        userEmailLoggedIn
     });
+    
 }
 
 module.exports = {getShop};

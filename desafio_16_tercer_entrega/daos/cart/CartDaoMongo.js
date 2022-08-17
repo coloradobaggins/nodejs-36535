@@ -1,5 +1,6 @@
 const ContenedorMongoDB = require("../../contenedores/ContenedorMongoDB");
 const Cart = require('../../models/Cart');
+const {ObjectId} = require('mongodb');
 
 class CartDaoMongo extends ContenedorMongoDB{
 
@@ -9,16 +10,39 @@ class CartDaoMongo extends ContenedorMongoDB{
 
     async createCart(cartObj){
 
-        cartObj.timestamp = Date.now();
+        console.log(cartObj.user);
 
-        if(!cartObj.hasOwnProperty('productos')){
-            cartObj.productos = [];
+        let cartUserExist = await this.getCartByUserID(cartObj.user);
+        
+        //Si no existe el cart: 
+        if(cartUserExist == null){
+
+            cartObj.timestamp = Date.now();
+
+            if(!cartObj.hasOwnProperty('productos')){
+                cartObj.productos = [];
+            }
+
+            console.log(cartObj);
+
+            return await this.save(cartObj);
+
         }
 
-        console.log(cartObj);
 
-        return await this.save(cartObj);
+        let cartId = cartUserExist._id;
+        let productos = cartObj.productos
 
+
+        if(await this.checkProdInCart(cartId, productos) == null){  //Agrego producto si no existe previamente en carrito.
+
+            await this.addProdsToCart(cartId, productos);
+
+            console.log(`Producto agregado`);
+        }
+
+        return;
+        
     }
 
     /**
@@ -26,13 +50,13 @@ class CartDaoMongo extends ContenedorMongoDB{
      * 
      * @param {String} cartId (ObjectId)
      * @param {*} prods 
-     * @returns 
+     * @returns object (added object)
      */
      async addProdsToCart(cartId, prods){
 
         try{
 
-            let updated = await Carrito.findOneAndUpdate(
+            let updated = await Cart.findOneAndUpdate(
                 { _id: cartId }, 
                 { $push: {productos: prods} },
                 { new: true });
@@ -43,6 +67,56 @@ class CartDaoMongo extends ContenedorMongoDB{
             console.log(err);
         }
 
+    }
+
+    /**
+     * 
+     * @param {string} cartId 
+     * @param {string} prodId 
+     * @returns null || objet
+     */
+    async checkProdInCart(cartId, prodId){
+
+        let objIdCart = new ObjectId(cartId);
+        let objIdProd = new ObjectId(prodId);
+
+        try{
+
+            let prodCheck = await Cart.findOne({$and: [{_id: objIdCart}, { productos: objIdProd}]});
+
+            console.log(`check prod: `);
+            console.log(prodCheck);
+
+            return prodCheck;
+
+
+        }catch(err){
+            console.log(`Error al validar si existe este producto en este carrito: ${err}`);
+            throw new Error(err);
+        }
+
+    }
+
+    /**
+     * 
+     * @param {string} userId 
+     * @returns null || object
+     */
+    async getCartByUserID(userId){
+
+        try{
+
+            let userObjId = new ObjectId(userId); 
+            let userCartFinded  = await Cart.findOne({user: userObjId});
+            
+            return userCartFinded;
+            //return userID;
+
+        }catch(err){
+            console.log(`Error getting cartByUserId${err}`);
+            throw new Error(err);
+        }
+        
     }
 
 }

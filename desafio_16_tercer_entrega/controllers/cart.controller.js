@@ -15,13 +15,14 @@ const postCart = async (req, res)=>{
 
 
         let cartObj = {
-            user: req.user._id
+            user: req.user._id,
+            productos: _id
         }
 
         let result = await cartService.createCart(cartObj);
 
         res.json({msg: 'agregado a carrito'})
-
+        return;
     }
 
     res.json({
@@ -35,12 +36,22 @@ const postCart = async (req, res)=>{
 
 const getCart = async (req, res)=>{
 
-    console.log(`req.user`);
+    //Console.log(l)
+    
+    let userCart = await cartService.getCartByUserId(req.user._id);
+    let productsInCart = await cartService.getProductsFromCart(userCart._id);
+    //res.send(productsInCart);
 
-    console.log(req.user);
+    let userLoggedIn = (req.isAuthenticated()) ? req.user.username : undefined;
+    let userEmailLoggedIn = (req.isAuthenticated()) ? req.user.email : undefined;
 
-    res.json({user: req.user})
+    console.log(productsInCart.productos);
 
+    res.render('cart', {
+        prods: productsInCart.productos,
+        userLoggedIn,
+        userEmailLoggedIn
+    });
 
 }
 

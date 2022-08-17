@@ -15,7 +15,8 @@ const failLogin = (req, res)=>{
 
 const postLogin = async (req, res)=>{
 
-    res.redirect('/dashboard');    //Credenciales erroneas, lo maneja middleware (checkAuthentication), si estamos bien, a dashboard.
+    //res.redirect('/dashboard');    //Credenciales erroneas, lo maneja middleware (checkAuthentication), si estamos bien, a dashboard.
+    res.redirect('/shop');
 
 }
 
