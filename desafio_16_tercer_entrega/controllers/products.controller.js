@@ -1,134 +1,58 @@
-const ContenedorMongoDB = require('../contenedores/ContenedorMongoDB');
-const { Product } = require('../models/Product');
-const {loggers} = require('../utils/logger');
+const ProductService = require('../services/products.service');
+const ProductDTO = require('../dtos/ProductDTO');
 
-let objProduct = new ContenedorMongoDB(Product);
-
+const productService = new ProductService();
 
 const productsGet = async (req, res)=>{
 
-    const { id = null } = req.params;
 
-    console.log(`id: ${id}`);
+    let prods = await productService.getProducts();
 
-    let prods = [];
-
-    prods = await objProduct.getAll();
-
-    console.log(prods);
-    
-    if(id === null){
-
-        try{
-
-            prods = await objProduct.getAll();
-    
-        }catch(err){
-            console.error(err);
-            loggers.errorLogger.error(`Url: ${req.originalUrl}, Method: ${req.method} - Error: ${err}`);
-        }
-
-    }else{
-
-        try{
-
-            prods = await objProduct.getById(id)
-
-        }catch(err){
-
-            console.error(err);
-            loggers.errorLogger.error(`Url: ${req.originalUrl}, Method: ${req.method} - Error: ${err}`);
-        }
-
-    }
-    
-
-    res.render('getProducts', { 
+    res.render('getProducts',{ 
         prods, 
         userLoggedIn: req.user.username,
         userEmailLoggedIn: req.user.email 
     });
 
-
 }
 
+const productsPost = async(req, res)=> {
 
+    let product = req.body;
 
-const productsPost = async (req, res)=>{
+    let result = await productService.addProduct(product);    
 
-    const product = req.body;
-
-    product.timestamp = Date.now();
-
-    try{
-
-        await objProduct.save(product);
-
-    }catch(err){
-
-        console.error(err);
-        loggers.errorLogger.error(`Url: ${req.originalUrl}, Method: ${req.method} - Error: ${err}`);
-    }
-
-    res.json({
-        status:"send"
-    });
+    res.json({msg: result});
 
 }
 
 const productUpdate = async (req, res)=>{
 
-    //const prodId    = parseInt(req.params.id);
-    const prodId    = req.params.id;
-    const prod      = req.body;
+    const prodId = req.params.id;
+    const objProd = req.body;
 
-    let itemsResponse = [];
 
-    try{    
+    let result = await productService.updateProduct(prodId, objProd)
 
-        itemsResponse = await objProduct.update(prodId, prod);
-
-    }catch(err){
-        console.log(err);
-        loggers.errorLogger.error(`Url: ${req.originalUrl}, Method: ${req.method} - Error: ${err}`);
-    }
-
-    res.json({
-        itemsResponse
-    });
+    res.json({result});
 
 }
 
 const productDelete = async (req, res)=>{
 
-    const {id = null} = req.params;
-    
-    if(id!==null){
+    const id = req.params.id;
 
-        try{
+    let result = await productService.deleteProduct(id);
 
-            await objProduct.deleteById(id);
-    
-    
-        }catch(err){
-    
-            console.log(err);
-            loggers.errorLogger.error(`Url: ${req.originalUrl}, Method: ${req.method} - Error: ${err}`);
-        }
+    let response = (result) ? result : false;
 
-    }
-    
-
-    res.json({
-        id
-    });
+    res.json({deleted: response});
 
 }
 
-
-
-module.exports = {  productsGet,
-                    productsPost,
-                    productUpdate,
-                    productDelete
-                 };
+module.exports = {  
+    productsGet,
+    productsPost,
+    productUpdate,
+    productDelete
+ };

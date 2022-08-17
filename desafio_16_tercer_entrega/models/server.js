@@ -4,7 +4,6 @@ const express = require('express');
 const passport = require('passport');
 const { initializePassport } = require('../passport.config');
 const hbs = require('hbs');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -28,7 +27,7 @@ class Server{
         this.app = express();
 
         this.productsRoutes = '/api/productos';
-        this.cartRoutes = 'api/carrito';
+        this.cartRoutes = '/api/carrito';
 
         this.connectDB();
 
@@ -47,6 +46,7 @@ class Server{
     middlewares(){
 
         this.app.set('view engine', 'hbs');
+        this.app.set('/' ,path.join(__dirname, '/views'));
         hbs.registerPartials( path.join(__dirname, '..', 'views/partials') );
         
 
@@ -64,7 +64,6 @@ class Server{
             
         }));
         this.app.use(express.json());
-        this.app.use(bodyParser.json());
         this.app.use(cookieParser());
         this.app.use(express.urlencoded({extended: true}));
         this.app.use(express.static('public'));
@@ -87,17 +86,17 @@ class Server{
     }
 
     routes(){
-
+        
         this.app.use('/', require('../routes/login.routes'));
         this.app.use('/signup', require('../routes/signup.routes'));
         this.app.use('/dashboard', require('../routes/dashboard.routes'));
-        this.app.use(this.productsRoutes, require('../routes/products.routes'));
+        this.app.use(this.productsRoutes, require('../routes/products.routes'));    //Produts: /api/productos
+        this.app.use(this.cartRoutes, require('../routes/cart.routes'));            //Cart: api/carrito
         this.app.use('/info', require('../routes/info.routes'));
         this.app.use('/api/randoms', require('../routes/randoms.routes'));
         this.app.use('/profile', require('../routes/profile.routes'));
-
-        //Cart Routes
-        this.app.use(this.cartRoutes, require('../routes/cart.routes'));
+        this.app.use('/shop', require('../routes/shop.routes'));
+        
 
         this.app.use('*', require('../routes/notfound.routes'));
     }

@@ -17,10 +17,21 @@ const initializePassport = ()=>{
             async (req, username, password, done)=>{    //Funcion que debemos usar en passport.
 
 
+                const { email } = req.body;
 
-                const {email } = req.body;
+                const newUser = {
+                    username: req.body.username,
+                    name: req.body.name,
+                    email: req.body.email,
+                    age: req.body.age,
+                    address: req.body.address,
+                    phone: req.body.phone,
+                    password: req.body.password,
+                    rol: 'USER_ROL'
+                }
 
-                const newUser = req.body;
+                console.log(`NEW USER: `);
+                console.log(newUser);
 
                 try{
 
@@ -60,7 +71,9 @@ const initializePassport = ()=>{
 
                 try{
 
+
                     let user = await User.findOne({email: email});    //Buscar en db
+                    
                     
                     if(!user) return done(null, false), {message: "Usuario no existe"};
                     if(!isValidPass(user, password)) return done(null, false, {message: "Contraseña Invalida"})

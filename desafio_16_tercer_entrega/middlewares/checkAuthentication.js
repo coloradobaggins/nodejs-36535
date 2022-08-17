@@ -8,6 +8,7 @@ const checkAuthentication = (req, res, next)=>{
         next();
         
     }else{
+        console.log(`redirect a login, no esta logueado`);
         res.redirect('/login');
     }
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> header}}
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{> navbar}}
+    </nav>
+
+    
+    
+    <div class="container">
+
+        <div class="products-container">
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    <h2>Tabla de productos</h2>
+
+                    <p>Esta autenticado? {{authenticated}}</p>
+
+                    {{#if prods}}
+                        
+
+                                {{#each prods}}
+
+                                    <div class="card" style="width: 18rem;">
+                                        {{#if this.thumbnail}}
+                                            <img style="max-width:50%;" src="{{this.thumbnail}}" alt="imagen de producto">
+                                        {{else}}
+                                            <img style="max-width: 50%;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
+                                        {{/if}}
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{this.name}}</h5>
+                                            <p class="card-text">{{this.description}}</p>
+                                            <p>Precio: ${{this.price}}</p>
+                                            
+                                            <a data-prod-id="{{this._id}}" class="btn btn-primary add-to-cart">Agregar</a>
+                                            
+                                        </div>
+                                    </div>
+
+                                {{/each}}
+                                
+                            
+
+                    {{else}}
+                        <div class="alert alert-warning">Sin productos</div>
+                    {{/if}}
+
+                </div>
+            </div>
+
+        </div><!-- /. products-container -->
+
+    </div><!-- /.container -->
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="../js/shop.js"></script>
+</body>
+</html>

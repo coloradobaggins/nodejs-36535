@@ -15,6 +15,7 @@ router.get('/', checkAuthentication, (req, res)=>{
 
 
 
+
 router.get('/login', getLogin);
 
 router.post('/login', passport.authenticate('login', {failureRedirect: '/failLogin'}), postLogin);

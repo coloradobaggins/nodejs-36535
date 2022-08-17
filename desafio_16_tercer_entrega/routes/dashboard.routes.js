@@ -1,17 +1,11 @@
 const { Router } = require('express');
-const {checkAuthentication} = require('../middlewares/checkAuthentication')
+const {checkAuthentication} = require('../middlewares/checkAuthentication');
+const { getDashboard } = require('../controllers/dashboard.controller');
 
 const router = Router();
 
-router.get('/', checkAuthentication, (req, res)=>{
-    
-    //console.log(req.user);
-    res.render('dashboard', { 
-        userLoggedIn: req.user.username,
-        userEmailLoggedIn: req.user.email
-    });
+router.get('/', checkAuthentication, getDashboard);
 
-})
 
 
 module.exports = router;
