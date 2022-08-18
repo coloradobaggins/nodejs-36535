@@ -40,8 +40,18 @@
                 </div>
                 
                 <div>
+                    <p>FOTO DE PERFIL:</p>
+                    
 
-                    FOTO DE PERFIL:
+                    <div>
+
+                        {{#if userProfileData.img == ""}}
+                            <img src="{{userProfileData.img}}" alt="imagen de perfil" />
+                        {{else}}
+                            <img src="{{userProfileData.img}}" alt="imagen de perfil" />
+                        {{/if}}
+                    
+                    </div>
 
                 </div>
 

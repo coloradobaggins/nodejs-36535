@@ -49,7 +49,7 @@ const getCheckout = async (req, res) => {
 
         let smsBody = `Su pedido se ha recibido correctamente, el mismo se encuentra en proceso. Gracias!`;
 
-        //sendMsg(userPhone, smsBody);
+        sendMsg(userPhone, smsBody);
 
     }
     
