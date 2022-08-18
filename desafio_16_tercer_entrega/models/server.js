@@ -1,6 +1,7 @@
 const path = require('path');
 const yargs = require('yargs/yargs')(process.argv.slice(2));
 const express = require('express'); 
+const cors = require('cors');
 const passport = require('passport');
 const { initializePassport } = require('../passport.config');
 const hbs = require('hbs');
@@ -29,6 +30,8 @@ class Server{
         this.productsRoutes = '/api/productos';
         this.cartRoutes = '/api/carrito';
 
+        
+
         this.connectDB();
 
         this.middlewares();
@@ -36,6 +39,7 @@ class Server{
         this.routes();
 
     }
+
 
     async connectDB(){
 
@@ -63,6 +67,9 @@ class Server{
             cookie: {maxAge: 600000}
             
         }));
+
+        this.app.use(cors());
+
         this.app.use(express.json());
         this.app.use(cookieParser());
         this.app.use(express.urlencoded({extended: true}));
@@ -98,8 +105,11 @@ class Server{
         this.app.use('/shop', require('../routes/shop.routes'));
         this.app.use('/checkuot', require('../routes/checkout.routes'))
 
+        this.app.use('/file_upload', require('../routes/file_upload.routes'))
+
         this.app.use('*', require('../routes/notfound.routes'));
     }
+
 
     listen(){
 

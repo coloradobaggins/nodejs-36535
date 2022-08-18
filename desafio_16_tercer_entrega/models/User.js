@@ -31,7 +31,8 @@ const UserSchema = Schema({
         default: new Date()
     },
     photo:{
-        type: String
+        type: String,
+        default: 'https://cdn2.iconfinder.com/data/icons/digital-marketing-7/64/39_returning_visitor-128.png'
     },
     rol:{
         type: String,
