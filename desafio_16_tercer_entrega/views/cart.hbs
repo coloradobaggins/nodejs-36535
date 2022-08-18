@@ -13,53 +13,83 @@
     
     <div class="container">
 
-        <div class="products-container">
+        <div class="row">
+            
+            <h2>CARRITO!</h2>
 
-            <div class="row">
+            {{#if prods}}
+
                 <div class="col-md-8">
 
-                    <h2>CARRITO!</h2>
+                    <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Acciòn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                    {{#if prods}}
-                        
-
-                        {{#each prods}}
-
-                            <div class="card" style="width: 18rem;">
-                                {{#if this.thumbnail}}
-                                    <img style="max-width:50%;" src="{{this.thumbnail}}" alt="imagen de producto">
-                                {{else}}
-                                    <img style="max-width: 50%;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
-                                {{/if}}
-                                <div class="card-body">
-                                    <h5 class="card-title">{{this.name}}</h5>
-                                    <p class="card-text">{{this.description}}</p>
-                                    <p>Precio: ${{this.price}}</p>
-                                    
-                                    <a data-prod-id="{{this._id}}" class="btn btn-danger add-to-cart">Quitar</a>
-                                    
-                                </div>
-                            </div>
-
-                        {{/each}}
+                                {{#each prods}}
+                                    <tr>
+                                        <td>{{this.name}}</td>
+                                        <td>{{this.code}}</td>
+                                        <td>$ {{this.price}}</td>
+                                        <td>1</td>
+                                        <td>
+                                            {{#if this.thumbnail}}
+                                                <img style="max-width:25%;" src="{{this.thumbnail}}" alt="imagen de producto">
+                                            {{else}}
+                                                <img style="max-width: 25%;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
+                                            {{/if}}
+                                        </td>
+                                        <td>
+                                            <a href="#" data-prod-id="{{this._id}}" class="btn btn-danger remove-from-cart">Quitar</a>
+                                        </td>
+                                        
+                                    </tr>
+                                {{/each}}
+                                <tr>
+                                    <td>Monto total</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>$xxx</td>
+                                </tr>
                                 
-                            
-
-                    {{else}}
-                        <div class="alert alert-warning">Sin productos</div>
-                    {{/if}}
+                            </tbody>
+                        </table>
+                                
 
                 </div>
-            </div>
 
-        </div><!-- /. products-container -->
+                <div class="col-md-4">
+                    <a href="/checkuot">Finalizar Compra</a>
+                </div>
+
+            {{else}}
+
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        <p>Sin productos</p>
+                        <p>No hay productos en tu carrito</p>
+                    </div>
+                </div>
+
+            {{/if}}
+
+        </div><!-- ./row -->
 
     </div><!-- /.container -->
 
-    
 
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
+    <script src="../js/cart.js"></script>
 </body>
 </html>

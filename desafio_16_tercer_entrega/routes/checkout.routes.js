@@ -1,14 +1,14 @@
 const {Router} = require('express');
 const {checkAuthentication} = require('../middlewares/checkAuthentication');
-const { postCart, getCart } = require('../controllers/cart.controller');
+const {postCheckout, getCheckout} = require('../controllers/checkout.controller');
 
 const router = Router();
 
 // => ( /api/carrito )
 
-router.post('/', postCart);
+router.post('/', postCheckout);
 
-router.get('/', checkAuthentication, getCart);
+router.get('/', checkAuthentication, getCheckout);
 
 
 module.exports = router;

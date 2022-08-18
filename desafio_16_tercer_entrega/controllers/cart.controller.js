@@ -39,13 +39,23 @@ const getCart = async (req, res)=>{
     //Console.log(l)
     
     let userCart = await cartService.getCartByUserId(req.user._id);
-    let productsInCart = await cartService.getProductsFromCart(userCart._id);
-    //res.send(productsInCart);
+
+    console.log(`tiene carro este user? `);
+    console.log(userCart);
+
+    let productsInCart = {}
+
+    if(userCart!== null){
+
+        productsInCart = await cartService.getProductsFromCart(userCart._id);
+        //res.send(productsInCart);
+
+        console.log(productsInCart.productos);
+
+    }
 
     let userLoggedIn = (req.isAuthenticated()) ? req.user.username : undefined;
     let userEmailLoggedIn = (req.isAuthenticated()) ? req.user.email : undefined;
-
-    console.log(productsInCart.productos);
 
     res.render('cart', {
         prods: productsInCart.productos,
@@ -55,4 +65,9 @@ const getCart = async (req, res)=>{
 
 }
 
-module.exports = { postCart, getCart }
+
+const deleteProdFromCart = async(req, res)=>{
+
+}
+
+module.exports = { postCart, getCart, deleteProdFromCart }

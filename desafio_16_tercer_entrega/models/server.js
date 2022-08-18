@@ -96,7 +96,7 @@ class Server{
         this.app.use('/api/randoms', require('../routes/randoms.routes'));
         this.app.use('/profile', require('../routes/profile.routes'));
         this.app.use('/shop', require('../routes/shop.routes'));
-        
+        this.app.use('/checkuot', require('../routes/checkout.routes'))
 
         this.app.use('*', require('../routes/notfound.routes'));
     }
