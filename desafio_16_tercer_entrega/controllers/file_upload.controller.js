@@ -1,7 +1,8 @@
-const path = require('path');
+const UserService = require('../services/user.service');
 
+const userService = new UserService();
 
-let postFileUpload = (req, res, next)=>{
+let postFileUpload = async (req, res, next)=>{
 
     console.log(`Subiendo foto..`);
 
@@ -20,7 +21,13 @@ let postFileUpload = (req, res, next)=>{
 
     console.log(`filename: ${imgName}`);
 
-    res.json({message: `Successfully uploaded files`});
+
+    let updateImgProfileResult = await userService.updateProfileImg(req.user._id, imgName);
+
+    res.json({
+        message: `Successfully uploaded files`,
+        updateImg: updateImgProfileResult
+    });
 
 }
 

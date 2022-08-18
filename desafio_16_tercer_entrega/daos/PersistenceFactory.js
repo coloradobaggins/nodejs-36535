@@ -30,6 +30,21 @@ class PersistenceFactory{
 
     }
 
+    static getUserPersistence = async()=>{
+
+        switch(process.env.PERSISTENCE){
+            case 'MONGODB':
+                const UserDaoMongo = await require('./user/UserDaoMongo.js');
+                return new UserDaoMongo();
+            case 'FILE':
+                const UserDaoFile = await require('./user/UserDaoFile.js');
+                return new UserDaoFile();
+            default:
+                throw new Error('**** Unknown persistence ****');
+        }
+
+    }
+
 }
 
 module.exports = PersistenceFactory;
