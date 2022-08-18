@@ -1,5 +1,6 @@
 const CartService = require('../services/cart.service');
 const { sendEmailNotification } = require('../utils/emailSender');
+const {sendMsg} = require('../utils/smsSender');
 
 
 const cartService = new CartService();
@@ -36,6 +37,21 @@ const getCheckout = async (req, res) => {
 
     let userLoggedIn = (req.isAuthenticated()) ? req.user.username : undefined;
     let userEmailLoggedIn = (req.isAuthenticated()) ? req.user.email : undefined;
+
+
+
+    //Send SMS:
+
+    const userPhone = req.user.phone;
+    if(userPhone !== '' || userPhone !== null || userPhone !== undefined) {
+
+        let smsBody = `Su pedido se ha recibido correctamente, el mismo se encuentra en proceso. Gracias!`;
+
+        //sendMsg(userPhone, smsBody);
+
+    }
+    
+
 
     res.render('checkout', {
         userLoggedIn,
