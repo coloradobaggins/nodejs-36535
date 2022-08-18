@@ -6,17 +6,11 @@ const sendEmailNotification = (theSubject, htmlBody)=>{
 
     console.log(`Enviando email... data:`);
 
-    /*
-    const ADMIN_MAIL = 'dewitt.oberbrunner@ethereal.email';
-    const ADMIN_PASS = '46zPSbGv9tPdePkcc7';
-    */
-
     const ADMIN_MAIL = process.env.ADMIN_EMAIL;
     const ADMIN_PASS = process.env.ADMIN_EMAIL_PASS;
 
     const transporter = createTransport({
-        //host: 'smtp.ethereal.email',
-        //port: 587,
+
         host: process.env.ADMIN_EMAIL_HOST,
         port: process.env.ADMIN_EMAIL_PORT,
         auth: {
@@ -27,7 +21,7 @@ const sendEmailNotification = (theSubject, htmlBody)=>{
 
     
     const mailOptions = {
-        from: 'telecom ecommerce',
+        from: 'theecommerce',
         to: 'bugio89@gmail.com',
         subject: theSubject
     }
