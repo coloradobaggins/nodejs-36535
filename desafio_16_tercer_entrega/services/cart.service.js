@@ -52,6 +52,12 @@ class CartService{
 
     }
 
+    deleteCartById = async(cartId)=>{
+
+        return await this.cartDao.deleteCartById(cartId);
+
+    }
+
 }
 
 module.exports = CartService;

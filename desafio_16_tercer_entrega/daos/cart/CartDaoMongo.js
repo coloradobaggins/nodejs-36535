@@ -119,6 +119,12 @@ class CartDaoMongo extends ContenedorMongoDB{
         
     }
 
+    async deleteCartById(cartId){
+
+        return await this.deleteById(cartId);
+
+    }
+
 }
 
 module.exports = CartDaoMongo;

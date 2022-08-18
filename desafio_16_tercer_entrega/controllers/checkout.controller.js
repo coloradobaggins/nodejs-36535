@@ -8,11 +8,13 @@ const cartService = new CartService();
 const getCheckout = async (req, res) => {
 
     let userCart = await cartService.getCartByUserId(req.user._id);
+    let cartId = userCart._id;  //Id de carito, vinculado a este user
+
     let productsInCart = {}
 
     if(userCart!== null){
 
-        productsInCart = await cartService.getProductsFromCart(userCart._id);
+        productsInCart = await cartService.getProductsFromCart(cartId);
 
     }
 
@@ -47,11 +49,16 @@ const getCheckout = async (req, res) => {
 
         let smsBody = `Su pedido se ha recibido correctamente, el mismo se encuentra en proceso. Gracias!`;
 
-        sendMsg(userPhone, smsBody);
+        //sendMsg(userPhone, smsBody);
 
     }
     
+    // *** Vaciar / Eliminar carrito ***
 
+    let deleteCartById = await cartService.deleteCartById(cartId);
+
+    console.log(`deleted?`);
+    console.log(deleteCartById);
 
     res.render('checkout', {
         userLoggedIn,
