@@ -14,19 +14,20 @@ async function removeFromCart(e){
 
     console.log(`Remove item from cart, ittem id: ${productId}`);
 
-    /*
-    const rawResponse = await fetch('http://localhost:3001/api/carrito', {
-        method: 'POST',
+    
+    //const rawResponse = await fetch('http://localhost:3001/api/carrito', {
+    const rawResponse = await fetch(`http://localhost:3001/api/carrito/${productId}/producto`, {
+        method: 'DELETE',
         headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({_id: productId})
+        //body: JSON.stringify({_id: productId})
     });
 
     const jsonResponse = await rawResponse.json();
     console.log(jsonResponse);
 
-    */
+    
 
 }

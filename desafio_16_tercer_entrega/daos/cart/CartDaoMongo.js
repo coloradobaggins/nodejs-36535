@@ -6,6 +6,8 @@ class CartDaoMongo extends ContenedorMongoDB{
 
     constructor(){
         super(Cart);
+
+        console.log('Contructrrrrrrrr!')
     }
 
     async createCart(cartObj){
@@ -70,6 +72,37 @@ class CartDaoMongo extends ContenedorMongoDB{
     }
 
     /**
+     * Elimina un producto por su ObjectId
+     * 
+     * @param {String} cartId (ObjectId)
+     * @param {*} prodId 
+     * @returns 
+     */
+    async deleteProdFromCart(cartId, prodId){
+
+        console.log(`ooooook!! llegamos - cartId: ${cartId}, ${prodId}`);
+
+
+        try{
+            
+            let updated = await Cart.findOneAndUpdate(
+                {_id: cartId }, {
+                    //$pull: {productos: {_id: prodId}} 
+                    $pullAll: {productos: [prodId]} //Por su ObjectId en este array
+                },
+                { new: true });
+
+            
+            return updated;
+            
+
+        }catch(err){
+            console.log(err);
+        }
+
+    }
+
+    /**
      * 
      * @param {string} cartId 
      * @param {string} prodId 
@@ -123,6 +156,10 @@ class CartDaoMongo extends ContenedorMongoDB{
 
         return await this.deleteById(cartId);
 
+    }
+
+    whaaat(){
+        console.log(`what!!`);
     }
 
 }

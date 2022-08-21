@@ -1,3 +1,4 @@
+const path = require('path');
 class PersistenceFactory{
 
     static getPersistence = async () =>{
@@ -20,6 +21,8 @@ class PersistenceFactory{
         switch(process.env.PERSISTENCE){
             case 'MONGODB':
                 const CartDaoMongo = await require('./cart/CartDaoMongo.js');
+                //const dirPath = path.join(__dirname, '/cart/CartDaoMongo.js');
+                //const CartDaoMongo = await require(dirPath);
                 return new CartDaoMongo();
             case 'FILE':
                 const CartDaoFile = await require('./cart/CartDaoFile.js');

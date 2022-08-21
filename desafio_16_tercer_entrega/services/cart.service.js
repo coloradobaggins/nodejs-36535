@@ -1,4 +1,5 @@
-const PersistenceFactory = require('../daos/PersistenceFactory');
+//const PersistenceFactory = require('../daos/PersistenceFactory');
+const CartDaoMongo = require('../daos/cart/CartDaoMongo.js');
 
 class CartService{
 
@@ -11,7 +12,8 @@ class CartService{
 
     init = async()=>{
 
-        this.cartDao = await PersistenceFactory.getCartPersistence();
+        //this.cartDao = await PersistenceFactory.getCartPersistence();
+        this.cartDao = new CartDaoMongo();
 
     }
 
@@ -32,6 +34,18 @@ class CartService{
 
         return await this.cartDao.getById(cartId);
 
+    }
+
+    deleteProdInCart = async(prodId, cartId)=>{
+        
+        
+        console.log(`En service, delete prod, cartId: ${cartId}, prodId: ${prodId}`);
+
+        /*
+        return await this.cartDao.deleteProdFromCart(prodId, cartId);
+        */
+
+        this.cartDao.whaaat();
     }
 
     /**
@@ -58,6 +72,7 @@ class CartService{
 
     }
 
+    
 }
 
 module.exports = CartService;

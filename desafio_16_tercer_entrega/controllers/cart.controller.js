@@ -56,7 +56,7 @@ const getCart = async (req, res)=>{
 
     let userLoggedIn = (req.isAuthenticated()) ? req.user.username : undefined;
     let userEmailLoggedIn = (req.isAuthenticated()) ? req.user.email : undefined;
-
+    
     res.render('cart', {
         prods: productsInCart.productos,
         userLoggedIn,
@@ -68,6 +68,15 @@ const getCart = async (req, res)=>{
 
 const deleteProdFromCart = async(req, res)=>{
 
+    const prodId = req.params.id;
+    console.log(`Borrar este producto!! del carrito, id: ${prodId}`);
+
+    const loggedUserId = req.user._id;
+    const cartId = await cartService.checkCartUserExists(loggedUserId);
+
+    const result = await cartService.deleteProdInCart(prodId, cartId);
+
+    res.json({status: 'checking...'})
 }
 
 module.exports = { postCart, getCart, deleteProdFromCart }
