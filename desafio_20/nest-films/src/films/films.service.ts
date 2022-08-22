@@ -62,6 +62,7 @@ export class FilmsService {
 
         this.films = this.films.map( film => {
 
+            
             if(film.id === id){
                 filmDB = {
                     ...filmDB, 
@@ -69,10 +70,13 @@ export class FilmsService {
                     id                  // Reemplazo si me mandan el id en el body con el id que viene por param. Para evitar que me actualice el id si me lo mandan mal por el body
                 }
             }
+            
 
             return film;
 
         });
+
+        console.log(this.films);
 
         return filmDB;
     }
