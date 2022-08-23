@@ -26,6 +26,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.  
 Coderhouse, desafio 20 - crud con framework.  
+NestJs + MongoDB  
+
+PUERTO SETEADO EN 3000  
+http://localhost:3000/films/  
+
 
 ## Installation
 
