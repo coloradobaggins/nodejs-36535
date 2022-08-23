@@ -24,7 +24,8 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.  
+Coderhouse, desafio 20 - crud con framework.  
 
 ## Installation
 
@@ -45,18 +46,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
 
 ## Support
 
