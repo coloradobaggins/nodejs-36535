@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsUUID } from "class-validator";
+import { IsNumber, IsOptional, IsString, IsUUID } from "class-validator";
 
 export class UpdateFilmDto{
 
@@ -11,7 +11,7 @@ export class UpdateFilmDto{
     @IsOptional()
     readonly name?: string;
 
-    @IsString()
+    @IsNumber()
     @IsOptional()
     readonly year?: number;
 

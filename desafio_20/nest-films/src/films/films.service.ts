@@ -1,93 +1,96 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { isValidObjectId, Model } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 import { CreateFilmDto, UpdateFilmDto } from './dtos'
-
-import { Film } from './interfaces/film.interface';
+//import { Film } from './interfaces/film.interface';
+import { Film } from './entities/film.entity';
 
 @Injectable()
 export class FilmsService {
 
-    private films: Film[] = [
-        {
-            id: uuid(),
-            name: 'Scare Face',
-            year: 1990
-        },
-        {
-            id: uuid(),
-            name: 'Lord Of the Rings',
-            year: 2004
-        },
-        {
-            id: uuid(),
-            name: 'E.T.',
-            year: 1994
-        }
-    ]
+    constructor(
+
+        @InjectModel( Film.name)
+        private readonly filmModel: Model<Film>
+
+    ){}
+
     
     findAll(){
-        return this.films;
+        return this.filmModel.find();
     }
+    
 
-    findOneById(id: string){
+    async findOneById(id: string){
 
-        const findedFilm = this.films.find((f)=> f.id === id);
+        let film: Film; //(Entity Film)
 
-        if(!findedFilm) throw new NotFoundException(`Film con id: ${id} not found`);
-
-        return findedFilm;
-
-    }
-
-    create( createFilmDto: CreateFilmDto ){
-
-        const film: Film = {
-            id: uuid(),
-            ...createFilmDto
+        //MongoID
+        if(isValidObjectId(id)){
+            film = await this.filmModel.findById(id);
         }
-        
-
-        this.films.push(film);
 
         return film;
+
     }
 
-    update( id: string, updateFilmDto: UpdateFilmDto ){
+    async create( createFilmDto: CreateFilmDto ){
+        
+        try{
 
-        let filmDB = this.findOneById(id);
+            const newFilm = await this.filmModel.create(createFilmDto);
+            return newFilm;
 
-        if(updateFilmDto.id && updateFilmDto.id !== id){
-            throw new BadRequestException(`Si envia el id por el body, debe ser igual al de params..`)
+        }catch(err){
+            this.handleExceptions(err);
+        }
+        
+    }
+
+    async update( id: string, updateFilmDto: UpdateFilmDto ){
+ 
+        const film = await this.findOneById(id);
+
+        try{
+
+            const updated = await film.updateOne(updateFilmDto, { new:true});
+            return updated;
+
+        }catch(err){
+
+            this.handleExceptions(err);
+        }
+       
+    }
+
+
+    async delete(id: string){
+
+        /*
+            const film = await this.findOneById(id);
+            await film.deleteOne();
+        */
+        //const result = await this.filmModel.findByIdAndDelete(id);
+
+        const { deletedCount } = await this.filmModel.deleteOne({_id: id});
+        if(deletedCount === 0){
+            throw new BadRequestException(`Film con id ${id} no encontraso`);
         }
 
-        this.films = this.films.map( film => {
-
-            
-            if(film.id === id){
-                filmDB = {
-                    ...filmDB, 
-                    ...updateFilmDto,  //Reemplazo con todos los items a filmDB
-                    id                  // Reemplazo si me mandan el id en el body con el id que viene por param. Para evitar que me actualice el id si me lo mandan mal por el body
-                }
-            }
-            
-
-            return film;
-
-        });
-
-        console.log(this.films);
-
-        return filmDB;
+        return;
     }
 
+    //Excepciones no controladas..
+    private handleExceptions(error: any){
 
-    delete(id: string){
+        if(error.code === 11000){
+            throw new BadRequestException(`La pelicula ya existe en la db. ${JSON.stringify(error.keyValue)}`)
+        }
+        console.log(error);
+        throw new InternalServerErrorException(`No se puede crear film en db. Checkear logs del servidor.`);
 
-        const film = this.findOneById(id);
 
-        this.films = this.films.filter(film => film.id !== id);
-        
     }
 
 }

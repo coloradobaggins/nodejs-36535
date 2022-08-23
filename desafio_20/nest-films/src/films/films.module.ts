@@ -12,7 +12,7 @@ import { Film, FilmSchema } from './entities/film.entity';
       {
         name: Film.name,  //name extiende del documento, en la entidad
         schema: FilmSchema
-      }
+      },                  //Si tengo mas modelos van despues de la coma
     ])
   ]
 })

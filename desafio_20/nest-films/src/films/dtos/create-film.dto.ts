@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateFilmDto{
 
@@ -8,7 +8,7 @@ export class CreateFilmDto{
     @IsString({message: `Poner una buena pelicula...`})
     readonly name: string;
 
-    @IsString()
+    @IsNumber()
     readonly year: number;
 
 }

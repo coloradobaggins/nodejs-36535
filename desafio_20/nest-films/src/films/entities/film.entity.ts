@@ -13,7 +13,6 @@ export class Film extends Document{
     name:string;
 
     @Prop({
-        unique: true,
         index: true
     })
     year: number;

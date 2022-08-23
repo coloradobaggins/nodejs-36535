@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
 import { CreateFilmDto } from './dtos/create-film.dto';
 import { UpdateFilmDto } from './dtos/update-film.dto';
 import { FilmsService } from './films.service';
@@ -23,7 +24,7 @@ export class FilmsController {
 
   
   @Get(':id')
-  getFilmById( @Param('id', ParseUUIDPipe) id: string ) {
+  getFilmById( @Param('id') id: string ) {
 
     console.log({id});
 
@@ -40,7 +41,7 @@ export class FilmsController {
 
   @Patch(':id')
   updateFilm( 
-    @Param('id', ParseUUIDPipe) id: string, 
+    @Param('id') id: string, 
     @Body() updateFilmDto: UpdateFilmDto )
   {
     
@@ -48,7 +49,7 @@ export class FilmsController {
   }
   
   @Delete(':id')
-  deleteFilm( @Param('id', ParseUUIDPipe) id: string ){
+  deleteFilm( @Param('id', ParseMongoIdPipe) id: string ){
     return this.filmsService.delete(id);
   }
 
