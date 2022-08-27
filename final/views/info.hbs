@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    {{> header}}
+    
+</head>
+<body>
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{> navbar }}
+        </nav>
+
+ 
+        <div class="container row">
+           <h2>Hola {{userLoggedIn}}</h2>
+           <h3>Info</h3>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                
+                <ul>
+                    <li>Argumentos de entrada: {{dataObj.argv}}</li>
+                    <li>Plataforma/OS: {{dataObj.platform}}</li>
+                    <li>Memoria total reservada: {{dataObj.rssMemory}}</li>
+                    <li>Path ejecucion: {{dataObj.execPath}}</li>
+                    <li>Process ID: {{dataObj.processId}}</li>
+                    <li>Directorio del proyecto: {{dataObj.actualDir}}</li>
+                    <li>Nº Cpus server: {{dataObj.numCpus}}</li>
+                </ul>
+            
+            </div>
+
+
+        </div>
+    </div>
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="./js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+#Ignora node_modules
+node_modules
+
+#Ignora archivos relacionados a api keys
+.env
+
+# JPEG
+*.jpg
+*.jpeg
+*.jpe
+*.jif
+*.jfif
+*.jfi
+
+# Graphics Interchange Format
+*.gif
+
+# Web P
+*.webp
+
+# Web P
+*.webp
+
+# Tagged Image File Format
+*.tiff
+*.tif
+
+# Scalable Vector Graphics
+*.svg
+*.svgz
+
+# Portable Document Format
+*.pdf

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> header}}
+    <style>
+        body {
+            margin: 0;
+            background-color: #fff;
+        }
+
+        .bg-1 {
+            max-height: 400px;
+        }
+
+        .mainWindow {
+            background-color: #fff;
+        }
+        .product-img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .item-desc {
+            width: 100%;
+            min-width: 750px;
+            height: 100%;
+            text-overflow: ellipsis;
+        }
+        .item-desc {
+            text-indent: 15%;
+            text-justify: inter-word;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {{> navbar}}
+    </nav>
+
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Tabla de productos</h2>
+            </div>
+        </div>
+    </div><!-- /.container -->
+
+
+    {{#if prods}}
+
+        {{#each prods}}
+            <div class="container m-auto">
+                <div class="m-4 mainWindow shadow bg-white-rounded p-1">
+                    
+                    <!-- Window 1-->
+                    <div class="d-flex flex-row flex-no-wrap bg-1">
+
+                        <!-- Product Image Section-->
+                        <div class="flex-grow-1 m-2">
+                            <!--<img class="product-img p-2" src="https://images-na.ssl-images-amazon.com/images/I/91Rd6IjcSWL.jpg">-->
+                            {{#if this.thumbnail}}
+                                <img style="max-width:50%;" src="{{this.thumbnail}}" alt="imagen de producto">
+                            {{else}}
+                                <img style="max-width: 50%;" src="https://cdn0.iconfinder.com/data/icons/images-image-files/24/photo_photography_image_picture_no_disable-512.png" alt="Producto sin imagen">
+                            {{/if}}
+                        </div>
+                        <!-- /. Product Image Section-->
+                    
+                        <!-- Product Desc Section-->
+                        <div class="flex-grow-1 m-2 p-1">
+                            <div class="d-flex flex-column">
+                                <div class="desc p-1 d-flex justify-content-between">
+                                    <h4>{{this.name}}</h4>
+                                    <h4>${{this.price}}</h4>
+                                </div>
+                                <div class="seller-name p-1">
+                                    <small>CATEGORY</small>
+                                </div>
+                                <div class="item-desc">
+                                    <!-- In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me, 'just remember that all the people in this world haven't had the advantages that you've had.'-->
+                                    {{this.description}}
+                                </div>
+                                
+                                <div class="buy-btn-container mt-4 pr-1">
+                                    <button type="button" data-prod-id="{{this._id}}" class="btn btn-xs mb-1 btn-warning add-to-cart">Comprar</button>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                        <!-- /. Product Image Section--> 
+                    </div>
+                    
+                    <hr class="light m-auto mr-2 ml-2"></hr>
+                        
+                </div>
+            </div><!-- /. container -->
+        {{/each}}
+
+    {{/if}}
+
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="../js/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    {{> header}}
+    
+</head>
+<body>
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{> navbar }}
+        </nav>
+
+ 
+        <div class="container row">
+           <h2>Hola {{userLoggedIn}}</h2>
+           <h3>Info</h3>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                
+                <div>
+                    <ul>
+                        <li>Nombre: {{userProfileData.name}}</li>
+                        <li>Email: {{userProfileData.email}}</li>
+                        <li>Telefono: {{userProfileData.phone}}</li>
+                        <li>Edad: {{userProfileData.age}}</li>
+                        <li>Direccion: {{userProfileData.address}}</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <p>FOTO DE PERFIL:</p>
+
+                <div>
+                    <!--<img src="./uploads/profile/user_profile.webp" alt="imagen de perfil" />-->
+                    <!--<img src="https://cdn2.iconfinder.com/data/icons/digital-marketing-7/64/39_returning_visitor-128.png" alt="imagen de perfil" />-->
+                    <img id="profileimg" style="max-width: 256px;" src="" alt="imagen de perfil" />
+                </div>
+                <div>
+                    
+                    <br/>
+                    <h3>Cambiar Foto</h3>
+
+                    <form id='profile_img'>
+                        <div class="input-group">
+                            <label for='files'>Select files</label>
+                            <!--<input id='files' type="file" multiple>-->
+                            <input id='files' name='files' type="file">
+                        </div>
+
+                        <button class="btn btn-primary submit-btn" type='submit'>Subir</button>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>
