@@ -10,32 +10,41 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const { dbConnection } = require('../database/config');
-
 const { loggers } = require('../utils/logger');
-
-const loginRouter = require('../routes/login.routes');
+const { chatSocketController } = require('../sockets/chat.controller');
 
 class Server{
 
     constructor(){
 
-        //this.PORT = args.p || 8080; // (node app --p portNumber -m FORK || CLUSTER)
-
         this.PORT = process.env.PORT || 8080;
-
 
         this.app = express();
 
-        this.productsRoutes = '/api/productos';
-        this.cartRoutes = '/api/carrito';
+        this.server = require('http').createServer(this.app);
+        this.io = require('socket.io')(this.server);    //Toda la informacion de los sockets conectados estan aca.
 
-        
+        this.paths = {
+            login:          '/login',
+            logout:         '/logout',
+            signup:         '/signup',
+            dashboard:      '/dashboard',
+            info:           '/info',
+            profile:        '/profile',
+            shop:           '/shop',
+            checkuot:       '/checkuot',
+            file_upload:    '/file_upload',
+            products:       '/api/productos',
+            cart:           '/api/carrito'
+        }
 
         this.connectDB();
 
         this.middlewares();
 
         this.routes();
+
+        this.sockets();
 
     }
 
@@ -97,27 +106,32 @@ class Server{
 
     routes(){
         
-
-        this.app.use('/login', loginRouter);
-        this.app.use('/logout', require('../routes/logout.routes'));
-        this.app.use('/signup', require('../routes/signup.routes'));
-        this.app.use('/dashboard', require('../routes/dashboard.routes'));
-        this.app.use(this.productsRoutes, require('../routes/products.routes'));    //Produts: /api/productos
-        this.app.use(this.cartRoutes, require('../routes/cart.routes'));            //Cart: api/carrito
-        this.app.use('/info', require('../routes/info.routes'));
-        this.app.use('/profile', require('../routes/profile.routes'));
-        this.app.use('/shop', require('../routes/shop.routes'));
-        this.app.use('/checkuot', require('../routes/checkout.routes'));
-        this.app.use('/file_upload', require('../routes/fileUpload.routes'))
-
+        this.app.use(this.paths.login, require('../routes/login.routes'));
+        this.app.use(this.paths.logout, require('../routes/logout.routes'));
+        this.app.use(this.paths.signup, require('../routes/signup.routes'));
+        this.app.use(this.paths.dashboard, require('../routes/dashboard.routes'));
+        this.app.use(this.paths.products, require('../routes/products.routes'));    //Produts: /api/productos
+        this.app.use(this.paths.cart, require('../routes/cart.routes'));            //Cart: api/carrito
+        this.app.use(this.paths.info, require('../routes/info.routes'));
+        this.app.use(this.paths.profile, require('../routes/profile.routes'));
+        this.app.use(this.paths.shop, require('../routes/shop.routes'));
+        this.app.use(this.paths.checkuot, require('../routes/checkout.routes'));
+        this.app.use(this.paths.file_upload, require('../routes/fileUpload.routes'))
 
         this.app.use('*', require('../routes/notfound.routes'));
+    }
+
+    sockets(){
+        
+        this.io.on('connection', chatSocketController);
+
     }
 
 
     listen(){
 
-        this.app.listen(this.PORT, ()=>console.log('listening on port '+this.PORT));
+        //this.app.listen(this.PORT, ()=>console.log(`Server listening on port ${this.PORT}`));
+        this.server.listen(this.PORT, ()=>console.log(`Server listening on port ${this.PORT}`));
 
     }
 
