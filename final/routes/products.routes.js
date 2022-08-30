@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {checkAuthentication} = require('../middlewares/checkAuthentication');
+const { checkAuthentication, checkAdminRol } = require('../middlewares/');
 
 //const { productsSessionChecker } = require('../middlewares/session_checker');
 
@@ -11,10 +11,10 @@ const { productsGet,
 
 const router = Router();
 
-
+/*
 const isAdmin = (req, res, next)=>{
 
-    const ADMINISTRADOR = true;
+    const ADMINISTRADOR = false;
 
     if(ADMINISTRADOR){   
         next();
@@ -25,11 +25,13 @@ const isAdmin = (req, res, next)=>{
         })
     }
 }
+*/
 
-router.get('/:id?', checkAuthentication, productsGet);
-router.post('/', [checkAuthentication, isAdmin], productsPost);
-router.put('/:id', [checkAuthentication, isAdmin], productUpdate);
-router.delete('/:id', [checkAuthentication, isAdmin], productDelete);
+
+router.get('/:id?', [checkAuthentication, checkAdminRol], productsGet);
+router.post('/', [checkAuthentication, checkAdminRol], productsPost);
+router.put('/:id', [checkAuthentication, checkAdminRol], productUpdate);
+router.delete('/:id', [checkAuthentication, checkAdminRol], productDelete);
 
 
 module.exports = router;
