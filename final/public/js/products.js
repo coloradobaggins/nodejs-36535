@@ -3,9 +3,13 @@
 let prodForm = document.querySelector('#prod-form');
 let theProds = [];
 
+let btnDelete = document.querySelectorAll('.btn-delete');
+let btnConfirmDelete = document.querySelector('.btn-confirm-delete');
+let prodIdToDelete;
+
 window.onload = function(){
 
-    console.log(`on load`)
+    console.log(`products.js`);
 
 }
 
@@ -46,3 +50,45 @@ prodForm.addEventListener('submit', (e)=>{
 
 });
 
+btnDelete.forEach((btn)=>{
+
+    btn.addEventListener('click', (e)=>{
+
+        prodIdToDelete = e.target.getAttribute('data-prod-id')
+
+        console.log(`clicked ${prodIdToDelete}`);
+    })
+
+})
+
+btnConfirmDelete.addEventListener('click', ()=>{
+
+    console.log(`ELIMINAR! ${prodIdToDelete}`);
+
+
+    deleteProd(prodIdToDelete);
+
+
+})
+
+
+const deleteProd = async(prodId)=>{
+
+    console.log(`ok, vamos aborrar el prod ${prodId}`);
+
+    const rawResponse = await fetch('http://localhost:3001/api/productos/'+prodId, {
+        method: 'DELETE',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    });
+
+    const jsonResponse = await rawResponse.json();
+    console.log(jsonResponse);
+
+    if(jsonResponse.status === 'success'){
+        location.reload();
+    }
+
+}

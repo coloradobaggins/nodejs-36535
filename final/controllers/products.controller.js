@@ -44,8 +44,12 @@ const productDelete = async (req, res)=>{
     let result = await productMongoDB.deleteProduct(id);
 
     let response = (result) ? result : false;
+    let status = (response) ? 'success' : 'error';
 
-    res.json({deleted: response});
+    res.json({
+        status,
+        deleted: response
+    });
 
 }
 
