@@ -4,13 +4,13 @@ const getDashboard = (req, res)=>{
     
     console.log(`UserRol: ${userRol}`);
 
-    let rol = (userRol === "ADMIN_ROL") ? userRol : null;
+    let rolAdmin = (userRol === "ADMIN_ROL") ? userRol : null;
     console.log(`rol:`)
-    console.log(rol);
+    console.log(rolAdmin);
     res.render('dashboard', { 
         userLoggedIn: req.user.name,
         userEmailLoggedIn: req.user.email,
-        rol
+        rolAdmin
     });
 
 

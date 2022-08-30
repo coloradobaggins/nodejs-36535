@@ -15,14 +15,26 @@ const getCart = async (req, res)=>{
     //console.log(userCart);
 
     let productsInCart = {}
-
+    let totalPrice = 0;
+    
     if(userCart!== null){
 
         productsInCart = await cartService.getProductsFromCart(userCart._id);
-        //res.send(productsInCart);
+
+        console.log(`******************************`);
+        const allProds = productsInCart.productos;
 
         console.log(`productsInCart.productos: `);
-        console.log(productsInCart.productos);
+        console.log(allProds);
+        console.log(allProds.length);
+
+        if(allProds.length > 0){
+            totalPrice = cartService.getTotalPriceOfCart(allProds);
+            console.log(totalPrice);
+        }
+        
+
+        console.log(`******************************`);
 
     }
 
@@ -31,6 +43,7 @@ const getCart = async (req, res)=>{
     
     res.render('cart', {
         prods: productsInCart.productos,
+        totalPrice: totalPrice,
         userLoggedIn,
         userEmailLoggedIn
     });

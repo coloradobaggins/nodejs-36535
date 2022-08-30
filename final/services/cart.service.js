@@ -36,6 +36,13 @@ class CartService{
 
     }
 
+    getTotalPriceOfCart = (prodsArr)=>{
+
+        return prodsArr.map((prod)=> prod.price).reduce((prev, next) => prev + next);
+
+    }
+
+
     deleteProdInCart = async(prodId, cartId)=>{
         
         
