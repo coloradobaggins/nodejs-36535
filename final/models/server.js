@@ -5,13 +5,14 @@ const passport = require('passport');
 const { initializePassport } = require('../passport.config');
 const hbs = require('hbs');
 const fileUpload = require('express-fileupload');
+const { createServer } = require('http');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const { dbConnection } = require('../database/config');
 const { loggers } = require('../utils/logger');
-const { chatSocketController } = require('../sockets/chat.controller');
+const { chatSocketController } = require('../sockets/chat.socket.controller');
 
 class Server{
 
@@ -21,7 +22,7 @@ class Server{
 
         this.app = express();
 
-        this.server = require('http').createServer(this.app);
+        this.server = createServer(this.app);
         this.io = require('socket.io')(this.server);    //Toda la informacion de los sockets conectados estan aca.
 
         this.paths = {
@@ -32,6 +33,7 @@ class Server{
             info:           '/info',
             profile:        '/profile',
             shop:           '/shop',
+            chat:           '/chat', 
             checkuot:       '/checkuot',
             file_upload:    '/file_upload',
             products:       '/api/productos',
@@ -116,8 +118,8 @@ class Server{
         this.app.use(this.paths.profile, require('../routes/profile.routes'));
         this.app.use(this.paths.shop, require('../routes/shop.routes'));
         this.app.use(this.paths.checkuot, require('../routes/checkout.routes'));
-        this.app.use(this.paths.file_upload, require('../routes/fileUpload.routes'))
-
+        this.app.use(this.paths.file_upload, require('../routes/fileUpload.routes'));
+        this.app.use(this.paths.chat, require('../routes/chat.routes'));
         this.app.use('*', require('../routes/notfound.routes'));
     }
 
@@ -130,7 +132,7 @@ class Server{
 
     listen(){
 
-        //this.app.listen(this.PORT, ()=>console.log(`Server listening on port ${this.PORT}`));
+        //this.app.listen(this.PORT, ()=>console.log(`Server listening on port ${this.PORT}`)); //El server de express no tiene nada de sockets.
         this.server.listen(this.PORT, ()=>console.log(`Server listening on port ${this.PORT}`));
 
     }

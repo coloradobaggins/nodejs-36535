@@ -1,0 +1,13 @@
+.item-chat{
+    background-color:aliceblue;
+    padding: .5em;
+}
+.msg-mail{
+    font-weight:600;
+    color:rgb(57, 80, 214)
+}
+
+.msg-date{
+    font-weight:600;
+    color:crimson;
+}

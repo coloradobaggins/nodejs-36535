@@ -5,16 +5,20 @@ const socket = io();
 const serverOnline  = document.querySelector('.server-online');
 const serverOffline = document.querySelector('.server-offline');
 
-const formName      = document.querySelector('#nombre');
+const formMail      = document.querySelector('#mail');
+const formSubject   = document.querySelector('#subject');
 const formComments  = document.querySelector('#comments');
 const sendMsgBtn    = document.querySelector('#send-msg');
+
+let msgsContainer  = document.querySelector('.msgs-container'); 
 
 sendMsgBtn.addEventListener('click', ()=>{
 
     console.log(`To send: `);
 
     const payload = {
-        name: formName.value,
+        mail: formMail.value,
+        subject: formSubject.value,
         comments: formComments.value
     }
 
@@ -48,6 +52,11 @@ socket.on('disconnect', ()=>{
 socket.on('server-msg', (payload)=>{
 
     //console.log(`Este mensaje llega desde el server!`);
+
+    msgsContainer.innerHTML += `<div class="mb-3 item-chat">
+        <div class="item-header"><p><span class="msg-mail">${payload.mail}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
+        <div class="item-body"><p>${payload.comments}</p></div>
+    </div>`;
 
     console.log(payload);
 

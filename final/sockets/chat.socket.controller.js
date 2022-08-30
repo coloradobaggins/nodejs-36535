@@ -1,3 +1,5 @@
+const request = require('express');
+
 const chatSocketController = (socket) =>{
 
     console.log(`Cliente conectado ${socket.id}`);
@@ -10,6 +12,7 @@ const chatSocketController = (socket) =>{
     socket.on('client-msg', (payload, callback)=>{
 
         console.log(`msg received!`);
+        console.log(payload);
 
         const id = 1234;
 
