@@ -16,8 +16,12 @@ sendMsgBtn.addEventListener('click', ()=>{
 
     console.log(`To send: `);
 
+    let theDate = new Date();
+
     const payload = {
-        mail: formMail.value,
+        //date: theDate.toLocaleString(),
+        date: theDate,
+        email: formMail.value,
         subject: formSubject.value,
         comments: formComments.value
     }
@@ -54,7 +58,7 @@ socket.on('server-msg', (payload)=>{
     //console.log(`Este mensaje llega desde el server!`);
 
     msgsContainer.innerHTML += `<div class="mb-3 item-chat">
-        <div class="item-header"><p><span class="msg-mail">${payload.mail}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
+        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
         <div class="item-body"><p>${payload.comments}</p></div>
     </div>`;
 
