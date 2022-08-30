@@ -14,7 +14,8 @@ class CartMongoDB extends ContenedorMongoDB{
 
         console.log(cartObj.user);
 
-        let cartUserExist = await this.getCartByUserID(cartObj.user);
+        //let cartUserExist = await this.getCartByUserID(cartObj.user);
+        let cartUserExist = await this.getCartByUser(cartObj.user);
         
         //Si no existe el cart: 
         if(cartUserExist == null){
@@ -71,6 +72,18 @@ class CartMongoDB extends ContenedorMongoDB{
 
     }
 
+    async getProductsCart(cartId){
+
+        try{
+
+            return await this.model.findOne({_id: cartId}).populate('productos');
+
+        }catch(err){
+            console.log(err);
+        }
+
+    }
+
     /**
      * Elimina un producto por su ObjectId
      * 
@@ -78,7 +91,7 @@ class CartMongoDB extends ContenedorMongoDB{
      * @param {*} prodId 
      * @returns 
      */
-    async deleteProdFromCart(cartId, prodId){
+    async deleteTheProd(cartId, prodId){
 
         console.log(`ooooook!! llegamos - cartId: ${cartId}, ${prodId}`);
 
@@ -135,7 +148,7 @@ class CartMongoDB extends ContenedorMongoDB{
      * @param {string} userId 
      * @returns null || object
      */
-    async getCartByUserID(userId){
+    async getCartByUser(userId){
 
         try{
 
@@ -156,10 +169,6 @@ class CartMongoDB extends ContenedorMongoDB{
 
         return await this.deleteById(cartId);
 
-    }
-
-    whaaat(){
-        console.log(`what!!`);
     }
 
 }

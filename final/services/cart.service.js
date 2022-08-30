@@ -1,11 +1,11 @@
 //const PersistenceFactory = require('../daos/PersistenceFactory');
-const CartDaoMongo = require('../models/CartMongoDB.js');
-
+const CartMongo = require('../models/CartMongoDB.js');
+const Cart = require('../models/Cart.js');
 class CartService{
 
     constructor(){
 
-        let objCartDao = this.cartDao;
+        this.cartMongo;
         this.init();
 
     }
@@ -13,26 +13,26 @@ class CartService{
     init = async()=>{
 
         //this.cartDao = await PersistenceFactory.getCartPersistence();
-        this.cartDao = new CartDaoMongo();
+        this.cartMongo = new CartMongo();
 
     }
 
     createCart = async(cartObj)=>{
         
-        return await this.cartDao.createCart(cartObj);
+        return await this.cartMongo.createCart(cartObj);
 
 
     }
 
     addProductToCart = async(cartId, prods) =>{
 
-        this.cartDao = await this.cartDao.addProdsToCart(cartId, prods);
+        this.cartMongo = await this.cartMongo.addProdsToCart(cartId, prods);
 
     }
 
     getProductsFromCart = async(cartId) =>{
 
-        return await this.cartDao.getById(cartId);
+        return await this.cartMongo.getProductsCart(cartId);
 
     }
 
@@ -41,11 +41,27 @@ class CartService{
         
         console.log(`En service, delete prod, cartId: ${cartId}, prodId: ${prodId}`);
 
-        /*
-        return await this.cartDao.deleteProdFromCart(prodId, cartId);
-        */
+        //NO reconoce esta funcion, porque se ejecuta otra antes que esta en el controller. como que no permite ejecutar mas de 1...
+        //return await this.cartMongo.deleteTheProd(prodId, cartId);
+        
+        try{
+            
+            let updated = await Cart.findOneAndUpdate(
+                {_id: cartId }, {
+                    //$pull: {productos: {_id: prodId}} 
+                    $pullAll: {productos: [prodId]} //Por su ObjectId en este array
+                },
+                { new: true });
 
-        this.cartDao.whaaat();
+            
+            return updated;
+            
+
+        }catch(err){
+            console.log(err);
+        }
+
+
     }
 
     /**
@@ -55,20 +71,20 @@ class CartService{
      */
     checkCartUserExists = async(userId) =>{
     
-        let userCartExist = this.cartDao = await this.cartDao.getCartByUserID(userId);
-        console.log(userCartExist);
+        let userCartExist = this.cartMongo = await this.cartMongo.getCartByUser(userId);
+        //console.log(userCartExist);
         return userCartExist;
     }
 
     getCartByUserId = async(userId)=> {
 
-        return await this.cartDao.getCartByUserID(userId);
+        return await this.cartMongo.getCartByUser(userId);
 
     }
 
     deleteCartById = async(cartId)=>{
 
-        return await this.cartDao.deleteCartById(cartId);
+        return await this.cartMongo.deleteCartById(cartId);
 
     }
 

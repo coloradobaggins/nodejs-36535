@@ -28,6 +28,9 @@ async function removeFromCart(e){
     const jsonResponse = await rawResponse.json();
     console.log(jsonResponse);
 
-    
+    if(jsonResponse.status === 'ok'){
+        
+        location.reload();
+    }
 
 }
