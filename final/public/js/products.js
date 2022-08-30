@@ -15,7 +15,7 @@ window.onload = function(){
 
 
 //Envio de producto nuevo
-prodForm.addEventListener('submit', (e)=>{
+prodForm.addEventListener('submit', async (e)=>{
 
     console.log('llego aca?')
 
@@ -32,21 +32,26 @@ prodForm.addEventListener('submit', (e)=>{
         thumbnail: formData.get('thumbnail')
     }
 
-    console.log(payload);
-
-    fetch('/api/productos/', {
+    //console.log(payload);
+    
+    const rawResponse = await fetch('/api/productos/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(payload),
         
-    })
-    .then(()=>{
-        //location.reload();
     });
 
-    e.target.reset();   //Clear all fields
+    const jsonResponse = await rawResponse.json();
+
+    console.log(jsonResponse);
+
+    if(jsonResponse.status === 'success'){
+        location.reload();
+    }
+
+    //e.target.reset();   //Clear all fields
 
 });
 

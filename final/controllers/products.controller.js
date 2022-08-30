@@ -21,7 +21,12 @@ const productsPost = async(req, res)=> {
 
     let result = await productMongoDB.addProduct(product);    
 
-    res.json({msg: result});
+    let status = (result) ? 'success' : 'error';
+
+    res.json({
+        status,
+        msg: result
+    });
 
 }
 
