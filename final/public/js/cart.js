@@ -15,7 +15,6 @@ async function removeFromCart(e){
     console.log(`Remove item from cart, ittem id: ${productId}`);
 
     
-    //const rawResponse = await fetch('http://localhost:3001/api/carrito', {
     const rawResponse = await fetch(`http://localhost:3001/api/carrito/${productId}/producto`, {
         method: 'DELETE',
         headers:{

@@ -1,11 +1,16 @@
 
 
-let prodForm = document.querySelector('#prod-form');
+const prodForm = document.querySelector('#prod-form');
 let theProds = [];
 
-let btnDelete = document.querySelectorAll('.btn-delete');
-let btnConfirmDelete = document.querySelector('.btn-confirm-delete');
+const btnDelete = document.querySelectorAll('.btn-delete');
+const btnConfirmDelete = document.querySelector('.btn-confirm-delete');
 let prodIdToDelete;
+
+const prodEditForm = document.querySelector('#edit-prod-form');
+const btnEdit = document.querySelectorAll('.edit-product');
+const btnConfirmEdit = document.querySelector('.btn-confirm-edit');
+let prodIdToEdit;
 
 window.onload = function(){
 
@@ -31,8 +36,6 @@ prodForm.addEventListener('submit', async (e)=>{
         stock: formData.get('stock'),
         thumbnail: formData.get('thumbnail')
     }
-
-    //console.log(payload);
     
     const rawResponse = await fetch('/api/productos/', {
         method: 'POST',
@@ -51,10 +54,10 @@ prodForm.addEventListener('submit', async (e)=>{
         location.reload();
     }
 
-    //e.target.reset();   //Clear all fields
 
 });
 
+//Levanta id de producto segun btn clickeado
 btnDelete.forEach((btn)=>{
 
     btn.addEventListener('click', (e)=>{
@@ -76,7 +79,7 @@ btnConfirmDelete.addEventListener('click', ()=>{
 
 })
 
-
+//Borra
 const deleteProd = async(prodId)=>{
 
     console.log(`ok, vamos aborrar el prod ${prodId}`);
@@ -97,3 +100,54 @@ const deleteProd = async(prodId)=>{
     }
 
 }
+
+
+//Editar
+btnEdit.forEach((btn) => {
+    
+    btn.addEventListener('click', (e)=>{
+
+        prodIdToEdit = e.target.getAttribute('data-prod-id');
+        console.log(`prodIdToEdit: ${prodIdToEdit}`);
+
+    });
+
+});
+
+
+btnConfirmEdit.addEventListener('click', async ()=>{
+
+    console.log(`Confima editar, prodId: ${prodIdToEdit}`);
+
+    let formData = new FormData(prodEditForm);
+
+    const payload = {
+        name: formData.get('title'),
+        description: formData.get('desc'),
+        price: formData.get('price'),
+        code: formData.get('code'),
+        stock: formData.get('stock'),
+        thumbnail: formData.get('thumbnail')
+    }
+    console.log(`editPayload: `);
+    console.log(payload);
+    
+    const rawResponse = await fetch('/api/productos/'+prodIdToEdit, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(payload),
+        
+    });
+    
+    const jsonResponse = await rawResponse.json();
+
+    console.log(jsonResponse);
+
+    if(jsonResponse.status === 'success'){
+        location.reload();
+    }
+    
+
+})

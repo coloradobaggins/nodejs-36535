@@ -32,13 +32,20 @@ const productsPost = async(req, res)=> {
 
 const productUpdate = async (req, res)=>{
 
+    console.log(`******************* LLEGAMOS AL UPDATE!!!!! *******************`);
+
     const prodId = req.params.id;
     const objProd = req.body;
 
 
-    let result = await productMongoDB.updateProduct(prodId, objProd)
+    let result = await productMongoDB.updateProduct(prodId, objProd);
+    console.log(result);
+    let status = (result) ? 'success' : 'error';
 
-    res.json({result});
+    res.json({
+        result,
+        status
+    });
 
 }
 
@@ -48,7 +55,7 @@ const productDelete = async (req, res)=>{
 
     let result = await productMongoDB.deleteProduct(id);
 
-    let response = (result) ? result : false;
+    //let response = (result) ? result : false;
     let status = (response) ? 'success' : 'error';
 
     res.json({
