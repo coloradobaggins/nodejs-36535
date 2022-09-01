@@ -33,6 +33,8 @@ async function addProdToCart(e){
 
     if(content.status === 'redirect'){
         location.href = content.url;
+    }else if(content.status === 'success'){
+        location.href = '/carrito';
     }
 
 }

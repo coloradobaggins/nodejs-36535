@@ -36,8 +36,9 @@ class Server{
             chat:           '/chat', 
             checkuot:       '/checkuot',
             file_upload:    '/file_upload',
-            products:       '/api/productos',
-            cart:           '/api/carrito'
+            products:       '/productos',
+            cart:           '/carrito',
+            orders:         '/orders',
         }
 
         this.connectDB();
@@ -120,6 +121,7 @@ class Server{
         this.app.use(this.paths.checkuot, require('../routes/checkout.routes'));
         this.app.use(this.paths.file_upload, require('../routes/fileUpload.routes'));
         this.app.use(this.paths.chat, require('../routes/chat.routes'));
+        this.app.use(this.paths.orders, require('../routes/orders.routes'));
         this.app.use('*', require('../routes/notfound.routes'));
     }
 

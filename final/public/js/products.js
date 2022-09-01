@@ -34,6 +34,7 @@ prodForm.addEventListener('submit', async (e)=>{
         price: formData.get('price'),
         code: formData.get('code'),
         stock: formData.get('stock'),
+        category: formData.get('category'),
         thumbnail: formData.get('thumbnail')
     }
     
@@ -127,6 +128,7 @@ btnConfirmEdit.addEventListener('click', async ()=>{
         price: formData.get('price'),
         code: formData.get('code'),
         stock: formData.get('stock'),
+        category: formData.get('category'),
         thumbnail: formData.get('thumbnail')
     }
     console.log(`editPayload: `);

@@ -22,6 +22,10 @@ const ProductSchema = new Schema({
         type: Number,
         required: [true, 'El stock es obligatorio']
     },
+    category: {
+        type: String,
+        required: [true, 'La categoria es obligatorio']
+    },
     thumbnail:{
         type: String
     },

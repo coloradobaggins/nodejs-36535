@@ -31,6 +31,35 @@ class ProductsMongoDB extends ContenedorMongoDB{
         return await Product.findOne({_id: id}).populate('productos');
     }
 
+    getProductsByCategory = async(cat) => {
+
+        try{
+
+            const products = await Product.find({category: cat});
+            return products;
+
+        }catch(err){
+            console.log(err);
+        }
+
+    }
+
+    getCategories = async() =>{
+
+        try{
+
+            const prods = await this.getProducts();
+            const categories = prods.map((p)=> p.category);
+            const uniqueCategories = [... new Set(categories)];
+
+            return uniqueCategories;
+
+        }catch(err){
+            console.log(err)
+        }
+
+    }
+
     addProduct = async(prod) =>{
 
         let result;

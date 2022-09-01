@@ -72,8 +72,11 @@ const postCart = async (req, res)=>{
 
         let result = await cartService.createCart(cartObj);
 
-        res.json({msg: 'agregado a carrito'})
-        return;
+        return res.json({
+            msg: 'agregado a carrito',
+            status: 'success'
+        })
+        
     }
 
     res.json({
