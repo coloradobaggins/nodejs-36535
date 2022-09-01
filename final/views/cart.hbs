@@ -22,10 +22,10 @@
                 <div class="col-md-8">
 
                     <table class="table table-bordered">
+                        <form name="cart" action="/checkout" method="post">
                             <thead>
                                 <tr>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Code</th>
                                     <th scope="col">Precio</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Foto</th>
@@ -36,13 +36,15 @@
 
                                 {{#each prods}}
                                     <tr>
+                                        <input type="hidden" name="prodId" value="{{this._id}}">
                                         <td>{{this.name}}</td>
-                                        <td>{{this.code}}</td>
                                         <td>$ {{this.price}}</td>
                                         <td>
-                                            <div class="input-group input-group-sm mb-3">
-                                                <input type="number" class="form-control" value="1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                                            </div>
+                                            <select class="form-select" name="cantProd">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
                                         </td>
                                         <td>
                                             {{#if this.thumbnail}}
@@ -62,12 +64,15 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
                                     <td>$ {{totalPrice}}</td>
                                 </tr>
                                 
                             </tbody>
-                        </table>
+
+                            <button type="submit" class="btn btn-success">FINALIZAR COMPRA</button>
+
+                        </form>
+                    </table>
                                 
 
                 </div>

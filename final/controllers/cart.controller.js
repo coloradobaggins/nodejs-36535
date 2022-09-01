@@ -2,7 +2,6 @@ const CartService = require('../services/cart.service');
 
 
 
-
 const getCart = async (req, res)=>{
 
     const cartService = new CartService();
@@ -108,5 +107,6 @@ const deleteProdFromCart = async(req, res)=>{
         status: 'ok'
     })
 }
+
 
 module.exports = { postCart, getCart, deleteProdFromCart }

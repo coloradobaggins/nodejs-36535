@@ -19,7 +19,8 @@ async function addProdToCart(e){
 
     console.log(productId);
 
-    const rawResponse = await fetch('http://localhost:3001/api/carrito/',{
+    //const rawResponse = await fetch('http://localhost:3001/api/carrito/',{
+    const rawResponse = await fetch('http://localhost:3001/carrito/',{
         method: 'POST',
         headers:{
             'Accept': 'application/json',

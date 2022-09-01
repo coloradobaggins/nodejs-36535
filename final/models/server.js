@@ -34,7 +34,7 @@ class Server{
             profile:        '/profile',
             shop:           '/shop',
             chat:           '/chat', 
-            checkuot:       '/checkuot',
+            checkuot:       '/checkout',
             file_upload:    '/file_upload',
             products:       '/productos',
             cart:           '/carrito',
