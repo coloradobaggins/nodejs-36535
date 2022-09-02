@@ -22,12 +22,6 @@ class OrderMongoDB extends ContenedorMongoDB {
 
     }
 
-    async getProductsFromOrder(orderId){
-
-        return await Order.findOne({_id: orderId}).populate('productos');
-
-    }
-
 
 }
 

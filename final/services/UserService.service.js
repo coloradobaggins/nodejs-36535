@@ -62,6 +62,27 @@ class UserService{
 
     }
 
+    /**
+     * Actualiza un usuario
+     * @param {*} userId 
+     * @param {*} newDataObj 
+     * @returns new inserted user obj
+     */
+    updateProfileData = async(userId, newDataObj) => {
+
+        const userMongoDB = new UserMongoDB();
+        const user = await userMongoDB.getById(userId);
+        
+        //No perder esta data del user
+        newDataObj.email = user.email;
+        newDataObj.password = user.password;
+        newDataObj.photo = user.photo;
+        newDataObj.rol = user.rol;
+        
+        let updated = await userMongoDB.update(userId, newDataObj);
+        return updated;
+    }
+
 }
 
 

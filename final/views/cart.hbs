@@ -19,7 +19,7 @@
 
             {{#if prods}}
 
-                <div class="col-md-8">
+                <div class="col-md-12">
 
                     <table class="table table-bordered">
                         <form name="cart" action="/checkout" method="post">
@@ -43,9 +43,13 @@
                                         <td>$ {{this.price}}</td>
                                         <td>
                                             <select class="form-select" name="cantProd">
+                                                
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
+                                                <option value="3">4</option>
+                                                <option value="3">5</option>
+                                                
                                             </select>
                                         </td>
                                         <td>
@@ -71,16 +75,12 @@
                                 
                             </tbody>
 
-                            <button type="submit" class="btn btn-success">FINALIZAR COMPRA</button>
+                            <button type="submit" class="btn btn-success float-end">FINALIZAR COMPRA</button>
 
                         </form>
                     </table>
                                 
 
-                </div>
-
-                <div class="col-md-4">
-                    <a href="/checkuot">Finalizar Compra</a>
                 </div>
 
             {{else}}

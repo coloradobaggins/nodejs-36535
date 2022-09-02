@@ -6,12 +6,9 @@ const getCart = async (req, res)=>{
 
     const cartService = new CartService();
 
-    //Console.log(l)
     
     let userCart = await cartService.getCartByUserId(req.user._id);
 
-    console.log(`tiene carro este user? `);
-    //console.log(userCart);
 
     let productsInCart = {}
     let totalPrice = 0;
@@ -20,20 +17,18 @@ const getCart = async (req, res)=>{
 
         productsInCart = await cartService.getProductsFromCart(userCart._id);
 
-        console.log(`******************************`);
         const allProds = productsInCart.productos;
-
+        /*
         console.log(`productsInCart.productos: `);
         console.log(allProds);
         console.log(allProds.length);
+        */
 
         if(allProds.length > 0){
             totalPrice = cartService.getTotalPriceOfCart(allProds);
             console.log(totalPrice);
         }
         
-
-        console.log(`******************************`);
 
     }
 

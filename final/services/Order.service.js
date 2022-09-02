@@ -82,6 +82,10 @@ class OrderService{
         const orderMongoDB = new OrderMongoDB();
         
         const orders = await orderMongoDB.getOrdersByUserId(userId)
+        
+        console.log(`hacer calculo de cantidad: `);
+        console.log(orders);
+        console.log(`*****************`);
         return orders;
     }
     
