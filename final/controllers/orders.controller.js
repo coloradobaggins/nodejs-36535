@@ -1,8 +1,25 @@
-const getOrders = (req, res)=>{
+const OrderService = require('../services/Order.service');
+
+const getOrders = async(req, res)=>{
 
     console.log(`getORders!`);
 
+    const orderService = new OrderService();
+
+    //get orders by user id.
+
+    const userId = req.user._id;
+
+    const orders = await orderService.getOrdersByUser(userId);
+
+    console.log(orders);
+
+    console.log(JSON.stringify(orders));
+
+    
+
     res.render('orders',{
+        orders,
         userLoggedIn: req.user.name,
         userEmailLoggedIn: req.user.email 
     });

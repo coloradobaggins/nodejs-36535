@@ -37,6 +37,8 @@
                                 {{#each prods}}
                                     <tr>
                                         <input type="hidden" name="prodId" value="{{this._id}}">
+                                        <input type="hidden" name="prodName" value="{{this.name}}">
+                                        <input type="hidden" name="prodPrice" value="{{this.price}}">
                                         <td>{{this.name}}</td>
                                         <td>$ {{this.price}}</td>
                                         <td>

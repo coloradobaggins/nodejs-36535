@@ -61,11 +61,6 @@ class ContenedorMongoDB{
              
             return await this.model.findOne({_id: id});
 
-            /**************** */
-            //TODO:: se movio a ProductMongoDB.js
-            //return await this.model.findOne({_id: id}).populate('productos');
-            /**************** */
-
         }catch(err){
             console.log(err);
         }

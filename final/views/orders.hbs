@@ -14,13 +14,17 @@
             {{> navbar }}
         </nav>
 
- 
-        <div class="container row">
-           <h2>Hola {{userLoggedIn}}</h2>
-           <h3>Ordenes</h3>
-        </div>
-
     </div>
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Hola {{userLoggedIn}}</h2>
+                    <h5>Mis Ordenes</h5>
+                </div>
+            </div>
+           
+        </div>
 
     <div class="container">
 
@@ -28,18 +32,48 @@
 
             <div class="col-md-6">
                 
-                <div>
+                <div class="mb-3">
                     
-                    tus ordenes se muestran aca
+                    Encontra aca tus ordenes generadas:
 
                 </div>
 
             </div>
 
-            
+        </div>
 
+        <div class="col-md-12">
+            {{#if orders}}
+            
+            {{#each orders}}
+   
+            <table class="mb-3">
+                <thead>
+                    <tr><th>ORDEN</th></tr>
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each this.productos}}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.price}}</td>
+                        <td>{{this.cant}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/each}}
+            {{/if}}
+
+           
 
         </div>
+
     </div>
 
     

@@ -11,15 +11,23 @@ class OrderMongoDB extends ContenedorMongoDB {
 
         console.log(`Creando orden`)
 
-        //User
-        //productos []
-
-        console.log(`Nos llega el obj para orden: `);
-        console.log(orderObj);
 
         this.save(orderObj);
 
     }
+
+    async getOrdersByUserId(userId){
+
+        return await Order.find({user: userId}).populate('user');
+
+    }
+
+    async getProductsFromOrder(orderId){
+
+        return await Order.findOne({_id: orderId}).populate('productos');
+
+    }
+
 
 }
 

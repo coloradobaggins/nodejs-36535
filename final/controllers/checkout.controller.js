@@ -69,57 +69,26 @@ const getCheckout = async (req, res) => {
 
 }
 
-const postCheckout = (req, res)=>{
+const postCheckout = async (req, res)=>{
 
     const body = req.body;
     console.log(body);
 
-    
     const orderService = new OrderService();
-
-    let prodsFormatedArray = orderService.getProductAndCantArrayObj(body);
-    
-    console.log(`**** En checkout again: *****`);
-    console.log(prodsFormatedArray);
-    
-
-    /*
-    const prodId    = body.prodId;
-    const cant      = parseInt(body.cant);
-
-
-
-    console.log(Array.isArray(prodId));
-
-    prodId.forEach(id => {
-        console.log(`el id es: ${id}`);
-    });
-
-    */
-
-    /*
-    const orderMongoDB = new OrderMongoDB();
-
+ 
+    let prodsFormattedArray = orderService.getProductAndCantArrayObj(body);
+ 
     const orderObj = {
         user: req.user._id,
-        productos: [
-            {
-                product: prodId,
-                cant: 1
-            }
-        ] 
+        productos: prodsFormattedArray
     }
-    
-    console.log(orderObj);
-    
-    console.log(`******** obj *******`);
-    console.log(orderObj);
-    console.log(`********************`);
 
-    orderMongoDB.createOrder(orderObj);
-    */
-    
-    res.json(req.body);
+    console.log(orderObj);
+
+    await orderService.createOrder(orderObj);
+
+
+    res.redirect('/checkout');
 
 
 }

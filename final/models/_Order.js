@@ -9,20 +9,16 @@ const orderSchema = new Schema({
     },
     //productos:[]
     productos: [
-       {
-            prodId:{
-                type: String
+        {
+            product:{ 
+                type: Schema.Types.ObjectId,
+                ref: 'Product'
             },
-            name: {
-                type: String,
-            },
-            price:{
-                type: Number,
-            },
-            cant:{
-                type: Number,
-            }
-       }
+            cant: { 
+                type: Number, 
+                required: true 
+            } 
+        }
     ]
 });
 
