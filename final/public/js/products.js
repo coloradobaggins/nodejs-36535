@@ -38,7 +38,7 @@ prodForm.addEventListener('submit', async (e)=>{
         thumbnail: formData.get('thumbnail')
     }
     
-    const rawResponse = await fetch('/api/productos/', {
+    const rawResponse = await fetch('/productos/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -85,7 +85,7 @@ const deleteProd = async(prodId)=>{
 
     console.log(`ok, vamos aborrar el prod ${prodId}`);
 
-    const rawResponse = await fetch('http://localhost:3001/api/productos/'+prodId, {
+    const rawResponse = await fetch('http://localhost:3001/productos/'+prodId, {
         method: 'DELETE',
         headers:{
             'Accept': 'application/json',
@@ -134,7 +134,7 @@ btnConfirmEdit.addEventListener('click', async ()=>{
     console.log(`editPayload: `);
     console.log(payload);
     
-    const rawResponse = await fetch('/api/productos/'+prodIdToEdit, {
+    const rawResponse = await fetch('/productos/'+prodIdToEdit, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

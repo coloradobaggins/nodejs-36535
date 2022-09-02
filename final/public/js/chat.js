@@ -57,15 +57,6 @@ socket.on('disconnect', ()=>{
 
 socket.on('server-msg', (payload)=>{
 
-    //console.log(`Este mensaje llega desde el server!`);
-
-    /*
-    msgsContainer.innerHTML += `<div class="mb-3 item-chat">
-        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
-        <div class="item-body"><p>${payload.comments}</p></div>
-    </div>`;
-    */
-
     printMsg(payload);
 
     console.log(payload);
@@ -76,7 +67,7 @@ socket.on('server-msg', (payload)=>{
 const printMsg = (payload)=>{
 
     msgsContainer.innerHTML += `<div class="mb-3 item-chat">
-        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
+        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ ${payload.date.toLocaleDateString()} - ${payload.date.toLocaleTimeString()} ]</span></p></div>
         <div class="item-body"><p>${payload.comments}</p></div>
     </div>`;
 
