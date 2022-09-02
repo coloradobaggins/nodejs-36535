@@ -21,9 +21,9 @@ npm start
 
 ```  
 
-## Al crear un usuario  
+## Al crear un usuario  - Rol de usuarios
 Los usuarios se crean por default con rol USER_ROL.  
-Cambiar manualmente a ADMIN_ROL para tener un administrador y poder realizar todas las acciones (Ej abm de productos, etc).  
+Cambiar manualmente a ADMIN_ROL (db) para tener un administrador y poder realizar todas las acciones (Ej abm de productos, entre otros).  
 
 ## Mail & SMS  
 Setear en .env los datos para el envio de mail y sms.  
