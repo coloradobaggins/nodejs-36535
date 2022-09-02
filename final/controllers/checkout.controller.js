@@ -50,8 +50,8 @@ const getCheckout = async (req, res) => {
 
         let smsBody = `Su pedido se ha recibido correctamente, el mismo se encuentra en proceso. Gracias!`;
 
-        console.log(`Comentada la funcion enviar sms para no gastar el credito free!`);
-        //sendMsg(userPhone, smsBody);
+        //console.log(`Comentada la funcion enviar sms para no gastar el credito free!`);
+        sendMsg(userPhone, smsBody);
 
     }
     
