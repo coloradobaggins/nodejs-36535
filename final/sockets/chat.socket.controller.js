@@ -24,7 +24,13 @@ const chatSocketController = (socket) =>{
         callback(id);                                   //Feedback al cliente que me envio el msg (solo a el)
         
         //socket.emit('server-msg', payload);           //Solo envia el msg al cliente que me mando..
+        console.log(`###########`);
+        console.log(payload);
         
+        var todayDate = new Date(payload.date).toISOString();
+        console.log(todayDate);
+
+        console.log(`###########`);
         socket.broadcast.emit('server-msg', payload);   //Envia a todos los sockets conectados.
 
     })

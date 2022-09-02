@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const MessageSchema = new Schema({
 
     date:{
-        type: Date,
+        type: String,
         required: [true, 'La fecha es obligatoria']
     },
     email: {

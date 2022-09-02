@@ -14,13 +14,18 @@ let msgsContainer  = document.querySelector('.msgs-container');
 
 sendMsgBtn.addEventListener('click', ()=>{
 
-    console.log(`To send: `);
-
-    let theDate = new Date();
+    var d = new Date,
+    dformat = [d.getMonth()+1,
+               d.getDate(),
+               d.getFullYear()].join('/')+' '+
+              [d.getHours(),
+               d.getMinutes(),
+               d.getSeconds()].join(':');
+    console.log(dformat);
 
     const payload = {
         //date: theDate.toLocaleString(),
-        date: theDate,
+        date: dformat,
         email: formMail.value,
         subject: formSubject.value,
         comments: formComments.value
@@ -67,7 +72,7 @@ socket.on('server-msg', (payload)=>{
 const printMsg = (payload)=>{
 
     msgsContainer.innerHTML += `<div class="mb-3 item-chat">
-        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ ${payload.date.toLocaleDateString()} - ${payload.date.toLocaleTimeString()} ]</span></p></div>
+        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ ${payload.date} ]</span></p></div>
         <div class="item-body"><p>${payload.comments}</p></div>
     </div>`;
 
