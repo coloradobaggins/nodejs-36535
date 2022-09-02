@@ -32,7 +32,7 @@ const UserSchema = Schema({
     },
     photo:{
         type: String,
-        default: 'https://cdn2.iconfinder.com/data/icons/digital-marketing-7/64/39_returning_visitor-128.png'
+        default: 'default_profile.webp'
     },
     rol:{
         type: String,

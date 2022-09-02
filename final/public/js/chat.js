@@ -30,6 +30,8 @@ sendMsgBtn.addEventListener('click', ()=>{
         console.log(`Feedback del server solo para mi: ${feedback}`);  //Feedback solo para este cliente.
     });
 
+    printMsg(payload);
+
 });
 
 socket.on('connect', ()=>{
@@ -57,11 +59,25 @@ socket.on('server-msg', (payload)=>{
 
     //console.log(`Este mensaje llega desde el server!`);
 
+    /*
+    msgsContainer.innerHTML += `<div class="mb-3 item-chat">
+        <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
+        <div class="item-body"><p>${payload.comments}</p></div>
+    </div>`;
+    */
+
+    printMsg(payload);
+
+    console.log(payload);
+
+});
+
+
+const printMsg = (payload)=>{
+
     msgsContainer.innerHTML += `<div class="mb-3 item-chat">
         <div class="item-header"><p><span class="msg-mail">${payload.email}</span> <span class="msg-date float-end">[ 2022-08-29 20:27:00 ]</span></p></div>
         <div class="item-body"><p>${payload.comments}</p></div>
     </div>`;
 
-    console.log(payload);
-
-});
+}

@@ -56,10 +56,11 @@ class UserService{
         
         const profileImg = user.photo;
 
-        const imgPath = path.join(__dirname, '../uploads', 'profile_imgs', profileImg);
+        if(profileImg === 'default_profile.webp'){
+            return path.join(__dirname, '../public', 'imgs', profileImg);
+        }
 
-        return imgPath;
-
+        return path.join(__dirname, '../uploads', 'profile_imgs', profileImg);
     }
 
     /**

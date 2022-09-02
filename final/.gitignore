@@ -31,3 +31,6 @@ node_modules
 
 # Portable Document Format
 *.pdf
+
+# Dont ignore this
+!*public/imgs/default_profile.webp

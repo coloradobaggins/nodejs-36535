@@ -12,12 +12,6 @@ const getOrders = async(req, res)=>{
 
     const orders = await orderService.getOrdersByUser(userId);
 
-    console.log(orders);
-
-    console.log(JSON.stringify(orders));
-
-    
-
     res.render('orders',{
         orders,
         userLoggedIn: req.user.name,

@@ -82,7 +82,11 @@ const getImg = async(req, res)=>{
     const userService = new UserService();
     
     const imgPath = await userService.getProfileImg(userLoggedIn);
+    console.log('#########');
+    console.log(imgPath)
+    console.log('#########');
 
+   
 
     res.sendFile(imgPath);
 

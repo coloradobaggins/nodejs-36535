@@ -6,8 +6,6 @@ class CartMongoDB extends ContenedorMongoDB{
 
     constructor(){
         super(Cart);
-
-        console.log('Contructrrrrrrrr cartMongoDB!');
     }
 
     async createCart(cartObj){
@@ -93,9 +91,6 @@ class CartMongoDB extends ContenedorMongoDB{
      */
     async deleteTheProd(cartId, prodId){
 
-        console.log(`ooooook!! llegamos - cartId: ${cartId}, ${prodId}`);
-
-
         try{
             
             let updated = await Cart.findOneAndUpdate(
@@ -129,9 +124,6 @@ class CartMongoDB extends ContenedorMongoDB{
         try{
 
             let prodCheck = await Cart.findOne({$and: [{_id: objIdCart}, { productos: objIdProd}]});
-
-            console.log(`check prod: `);
-            console.log(prodCheck);
 
             return prodCheck;
 
